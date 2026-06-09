@@ -41,3 +41,13 @@ jobs:
           git add public data/processed/ledger.json || true
           git commit -m "daily report $(date -u +%Y-%m-%d)" || true
           git push || true
+      - name: Wait for public report
+        env:
+          REPORT_PUBLIC_BASE_URL: ${{ vars.REPORT_PUBLIC_BASE_URL }}
+        run: npm run report:wait-public
+      - name: Push notification
+        env:
+          LARK_WEBHOOK: ${{ secrets.LARK_WEBHOOK }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          REPORT_PUBLIC_BASE_URL: ${{ vars.REPORT_PUBLIC_BASE_URL }}
+        run: npm run report:push

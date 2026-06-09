@@ -134,7 +134,8 @@ export async function buildReport() {
 }
 
 function htmlReportUrl(htmlPath) {
-  const base = (process.env.REPORT_PUBLIC_BASE_URL || '').trim().replace(/\/$/, '');
+  const rawBase = (process.env.REPORT_PUBLIC_BASE_URL || '').trim().replace(/\/$/, '');
+  const base = rawBase && !rawBase.endsWith('/reports') ? `${rawBase}/reports` : rawBase;
   if (!base || !htmlPath) return '';
   return `${base}/${path.basename(htmlPath)}`;
 }

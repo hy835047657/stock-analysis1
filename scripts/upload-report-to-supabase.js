@@ -31,7 +31,8 @@ async function readJson(file, fallback) {
 }
 
 function publicUrl(file) {
-  const base = (process.env.REPORT_PUBLIC_BASE_URL || '').trim().replace(/\/$/, '');
+  const rawBase = (process.env.REPORT_PUBLIC_BASE_URL || '').trim().replace(/\/$/, '');
+  const base = rawBase && !rawBase.endsWith('/reports') ? `${rawBase}/reports` : rawBase;
   if (!base) return '';
   return `${base}/${path.basename(file)}`;
 }

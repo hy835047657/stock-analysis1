@@ -13,7 +13,7 @@ import { scoreAll }      from '../skills/backtest/index.js';
 import { analyze as runRisk } from '../skills/riskAlert/index.js';
 import { buildReport, pushLark, pushSlack } from './reporter.js';
 
-export async function runOnce({ skipBacktest = false } = {}) {
+export async function runOnce({ skipBacktest = false, push = true } = {}) {
   logger.info('=== Pipeline start ===');
   await fetchAll();
   await classifyAll();
@@ -25,8 +25,10 @@ export async function runOnce({ skipBacktest = false } = {}) {
   }
   await runRisk();
   const { md, path: rpath, htmlPath } = await buildReport();
-  await pushLark(md, { htmlPath });
-  await pushSlack(md);
+  if (push) {
+    await pushLark(md, { htmlPath });
+    await pushSlack(md);
+  }
   logger.info(`=== Pipeline complete · report at ${rpath} · html at ${htmlPath} ===`);
 }
 
@@ -48,6 +50,6 @@ if (flags.has('--schedule')) {
   schedule();
 } else {
   // default: run-once
-  runOnce({ skipBacktest: flags.has('--skip-backtest') })
+  runOnce({ skipBacktest: flags.has('--skip-backtest'), push: !flags.has('--no-push') })
     .catch(e => { logger.error({ err: e.message, stack: e.stack }, 'run failed'); process.exit(1); });
 }

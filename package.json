@@ -9,7 +9,9 @@
     "schedule": "node src/agent/orchestrator.js --schedule",
     "report:sync-public": "node scripts/sync-public-reports.js",
     "report:upload-supabase": "node scripts/upload-report-to-supabase.js",
-    "ci:daily": "node src/agent/orchestrator.js --run-once && npm run report:sync-public && npm run report:upload-supabase",
+    "report:push": "node scripts/push-report.js",
+    "report:wait-public": "node scripts/wait-public-report.js",
+    "ci:daily": "node src/agent/orchestrator.js --run-once --no-push && npm run report:sync-public && npm run report:upload-supabase",
     "build:vercel": "npm run report:sync-public",
     "test": "vitest run",
     "test:watch": "vitest"
