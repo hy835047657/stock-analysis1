@@ -61,7 +61,7 @@ https://your-app.vercel.app/reports/daily_YYYYMMDD.html
 
 ```text
 ┌────────────────────────────────────────────────────────────────┐
-│       Orchestrator (Node.js, ESM)  ·  GitHub Actions 15:10 CST │
+│       Orchestrator (Node.js, ESM)  ·  GitHub Actions 09:30 CST │
 └───┬────────────────────────────────────────────────────────────┘
     │
     ▼
@@ -149,7 +149,7 @@ This repo is prepared for Vercel + GitHub Actions + Supabase:
 2. Add GitHub repository secrets under `Settings -> Secrets and variables -> Actions`.
 3. Import the repo into Vercel. The included `vercel.json` serves the `public` directory.
 4. Set `REPORT_PUBLIC_BASE_URL` to your Vercel URL. Both `https://your-app.vercel.app` and `https://your-app.vercel.app/reports` are supported.
-5. GitHub Actions runs every day at 15:10 Asia/Shanghai and commits the latest public report archive.
+5. GitHub Actions runs every day at 09:30 Asia/Shanghai and commits the latest public report archive.
 
 Recommended GitHub Secrets:
 

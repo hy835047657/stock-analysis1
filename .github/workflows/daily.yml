@@ -1,7 +1,7 @@
 name: daily-fintwit
 on:
   schedule:
-    - cron: '10 7 * * *'  # 07:10 UTC = 15:10 Asia/Shanghai
+    - cron: '30 1 * * *'  # 01:30 UTC = 09:30 Asia/Shanghai
   workflow_dispatch:
 
 jobs:
