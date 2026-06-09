@@ -1,0 +1,2066 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FinTwit 每日简报 - 2026-06-08</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --panel-soft: #f0f4f8;
+      --text: #17202a;
+      --muted: #657282;
+      --line: #d9e0e8;
+      --green: #147d4f;
+      --red: #b42318;
+      --amber: #9a6700;
+      --blue: #1f5fbf;
+      --chip: #e8edf4;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 14px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 18px 56px;
+    }
+    header {
+      padding: 18px 0 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 3px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      white-space: nowrap;
+    }
+    .disclaimer {
+      margin-top: 14px;
+      max-width: 860px;
+      color: var(--muted);
+    }
+
+    section {
+      margin-top: 22px;
+    }
+    h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .span-4 { grid-column: span 4; }
+    .span-6 { grid-column: span 6; }
+    .span-12 { grid-column: span 12; }
+    .empty {
+      color: var(--muted);
+      padding: 10px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      color: var(--muted);
+      background: var(--panel-soft);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    tr:last-child td { border-bottom: 0; }
+    .num { text-align: right; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 1px 7px;
+      border-radius: 999px;
+      background: var(--chip);
+      color: #2f3b49;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .tag.long { color: var(--green); background: #e6f4ec; }
+    .tag.short, .tag.risk { color: var(--red); background: #fbeae8; }
+    .tag.neutral { color: #4d5966; background: #edf1f5; }
+    .tag.topic { color: #174ea6; background: #e8f0fe; }
+    .tag.warn { color: var(--amber); background: #fff3cd; }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .list li {
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+    .small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .summary-list {
+      margin: 8px 0 12px;
+      padding-left: 18px;
+      color: #2f3b49;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+    details + details { margin-top: 10px; }
+    summary {
+      cursor: pointer;
+      padding: 12px 14px;
+      background: var(--panel-soft);
+      font-weight: 700;
+    }
+    .details-body { padding: 12px 14px 14px; }
+    .tweet-table { font-size: 13px; }
+    .tweet-text { min-width: 260px; }
+    footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    @media (max-width: 860px) {
+      .page { padding: 20px 12px 42px; }
+      h1 { font-size: 24px; }
+      .span-4, .span-6 { grid-column: span 12; }
+      table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .tweet-text {
+        min-width: 420px;
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>FinTwit 每日简报</h1>
+      <div class="meta">
+        <span class="pill">2026-06-08</span>
+        <span class="pill">常规层 56 小时</span>
+        <span class="pill">9 位博主</span>
+        <span class="pill">69 条常规窗口推文</span>
+        <span class="pill">含周度摘要</span>
+      </div>
+      <div class="disclaimer">本报告仅聚合 X 平台公开博主观点，用于信息整理与线索追踪。
+内容不构成任何投资建议，请务必独立核验并自行判断风险。
+</div>
+    </header>
+
+    <section>
+      <h2>今日热点</h2>
+      
+      <table>
+        <thead><tr><th>主题</th><th class="num">提及次数</th><th>相关博主</th></tr></thead>
+        <tbody>
+          
+          <tr>
+            <td><span class="tag topic">CRYPTO</span></td>
+            <td class="num">11</td>
+            <td>LynAldenContact, aleabitoreddit</td>
+          </tr>
+          
+          <tr>
+            <td><span class="tag topic">AI_SEMI</span></td>
+            <td class="num">5</td>
+            <td>Beth_Kindig, aleabitoreddit</td>
+          </tr>
+          
+          <tr>
+            <td><span class="tag topic">ENERGY</span></td>
+            <td class="num">5</td>
+            <td>HKuppy, KobeissiLetter</td>
+          </tr>
+          
+          <tr>
+            <td><span class="tag topic">MACRO</span></td>
+            <td class="num">5</td>
+            <td>KobeissiLetter, LynAldenContact</td>
+          </tr>
+          
+          <tr>
+            <td><span class="tag topic">PHOTONICS</span></td>
+            <td class="num">3</td>
+            <td>aleabitoreddit</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+    </section>
+
+    <section>
+      <h2>多博主共识</h2>
+      <div class="grid">
+        <div class="card span-4">
+          <h3>做多共识</h3>
+          <div class="empty">今日暂无做多共识。</div>
+        </div>
+        <div class="card span-4">
+          <h3>做空共识</h3>
+          <div class="empty">今日暂无做空共识。</div>
+        </div>
+        <div class="card span-4">
+          <h3>分歧标的</h3>
+          
+          <ul class="list">
+            
+            <li><strong>NVDA</strong><br><span class="small">做多权重 2.4 vs 做空权重 3.4</span></li>
+            
+          </ul>
+          
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>仓位/观点变化</h2>
+      <div class="grid">
+        
+        <div class="card span-6">
+          <h3>@Beth_Kindig</h3>
+          
+          
+          <div class="empty">暂无新的仓位信号。</div>
+        </div>
+        
+        <div class="card span-6">
+          <h3>@aleabitoreddit</h3>
+          
+          <p><strong>强度提升：</strong><span class="tag">NVDA 4→5</span> <span class="tag">SIVE 4→5</span> <span class="tag">XFAB 4→5</span></p>
+          
+        </div>
+        
+        <div class="card span-6">
+          <h3>@HKuppy</h3>
+          
+          
+          <div class="empty">暂无新的仓位信号。</div>
+        </div>
+        
+        <div class="card span-6">
+          <h3>@altcap</h3>
+          
+          
+          <div class="empty">暂无新的仓位信号。</div>
+        </div>
+        
+      </div>
+    </section>
+
+    <section>
+      <h2>风险雷达</h2>
+      <div class="empty">今日暂无 ticker 绑定风险提醒。</div>
+      
+      <h3>泛风险讨论</h3>
+      <ul class="list">
+        
+        <li><a href="https://x.com/aleabitoreddit/status/2063798063035228188">@aleabitoreddit</a>：I appreciate the objective coverage from 中国证券报 (China Securities Journal) on my LeaderDrive (688017) analysis!
+
+On the article: 
+
+“A single tweet ignites the leading robotics stock, who exactly is the "White-Haired God of Stocks" Serenity?”
+
+Supply chains are </li>
+        
+        <li><a href="https://x.com/aleabitoreddit/status/2063211040989733012">@aleabitoreddit</a>：Apparently I’m all over Chinese news now?
+
+I just published some research on LeaderDrive (688017) and their role in humanoid supply chains.
+
+Looks like China’s robotics stock sector went up and 688017 hit 20% limit up?
+
+I appreciate they called me “Overseas Go</li>
+        
+        <li><a href="https://x.com/LynAldenContact/status/2062880174254010399">@LynAldenContact</a>：Things most Americans agree on:
+
+Groceries cost too much.
+
+Tariffs suck and make no sense.
+
+Congress and Presidents shouldn’t trade stocks.
+
+The debt is a mess.
+
+The border should be secure, but legal immigration is good.
+
+Endless wars are stupid, especially o</li>
+        
+        <li><a href="https://x.com/LynAldenContact/status/2061962950017995186">@LynAldenContact</a>：These things tend to happen more often in eras of fiscal dominance.
+
+They aim for “industrial policy” which means government directive and funding to prioritize certain sectors.
+
+Both major parties are ‘Big Government’ now (that was the Massie battle).</li>
+        
+        <li><a href="https://x.com/KobeissiLetter/status/2063667049306456526">@KobeissiLetter</a>：BREAKING: The spokesman for the Iranian Parliament’s National Security Commission says Iran will “deliver a decisive and painful response” to the Israeli attack on Beirut today.</li>
+        
+      </ul>
+      
+    </section>
+
+    <section>
+      <h2>回测快照</h2>
+      <table>
+        <thead><tr><th>博主</th><th class="num">样本数</th><th class="num">30 日胜率</th></tr></thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>按博主汇总与详情</h2>
+      
+      
+      <details>
+        <summary>@dylan522p（L1_industry · 4 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>7x per VR vs GB says Morgan Stanley.   @SemiAnalysis_ should clarify their 50% which caused panic.  What say you @dylan5</li><li>It’s pretty interesting watching telephone happen in realtime. Media almost always misquotes the report; then people use</li><li>PLEASE READ THIS and STOP 
+with the SemiAnalysis FUD, where you didn't even read the article and just want to be an assh</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2063311975744970861">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">24208</td>
+                <td class="tweet-text">7x per VR vs GB says Morgan Stanley.   @SemiAnalysis_ should clarify their 50% which caused panic.  What say you @dylan522p https://t.co/gHOUAmBD45</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2063381976682311703">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">14442</td>
+                <td class="tweet-text">It’s pretty interesting watching telephone happen in realtime. Media almost always misquotes the report; then people use the media misquote and come at us, often missing the entire point…. Alas</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2063344879846007101">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">11894</td>
+                <td class="tweet-text">PLEASE READ THIS and STOP 
+with the SemiAnalysis FUD, where you didn't even read the article and just want to be an asshole and quote one paragraph of it without any context whatsoever.
+
+@Larryjamieson_</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2063599391089533338">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">11365</td>
+                <td class="tweet-text">Many people were surprised to hear I like regular Coke over Diet Coke and suggested I try Coke Zero.
+
+So yesterday I tried it, and Coke Zero is definitely not repulsive as Diet Coke but it's still not the same as regular Coke.
+
+regular Coke &gt; Coke Zero &gt;&gt;&gt;&gt; Diet Coke</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@Beth_Kindig（L1_industry · 5 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>Intel and AMD have reported raised CPU prices by 10% to as much as 35% QoQ, as tight supply faces strong demand. 
+
+$INTC</li><li>SK Hynix Chairman Chey Tae-won believes the memory shortage could continue until 2030, with SK Hynix planning to double </li><li>Nvidia is reportedly expected to account for over 20% of TSMC’s revenue in 2026. 
+
+$NVDA $TSM $AVGO $AAPL</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2063344019741008347">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>$NVDA</td>
+                <td class="num">125498</td>
+                <td class="tweet-text">Intel and AMD have reported raised CPU prices by 10% to as much as 35% QoQ, as tight supply faces strong demand. 
+
+$INTC $AMD $NVDA</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2063715015274672354">2026-06-07</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>$NVDA</td>
+                <td class="num">30247</td>
+                <td class="tweet-text">SK Hynix Chairman Chey Tae-won believes the memory shortage could continue until 2030, with SK Hynix planning to double its memory wafer capacity over the next five years to help meet demand.
+
+$MU $NVDA $AMD</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2063653467059540089">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>$AAPL $AVGO $NVDA</td>
+                <td class="num">25406</td>
+                <td class="tweet-text">Nvidia is reportedly expected to account for over 20% of TSMC’s revenue in 2026. 
+
+$NVDA $TSM $AVGO $AAPL</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2063373197806895495">2026-06-06</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>$NVDA</td>
+                <td class="num">21075</td>
+                <td class="tweet-text">Data center power consumption is forecast to double by 2030, rising from 448 TWh to 945 TWh, per the UN, with AI accounting for 40% of that total.
+
+$MSFT $META $GOOG $AMZN $NVDA</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2063758643762172250">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>$NVDA</td>
+                <td class="num">18073</td>
+                <td class="tweet-text">3 months ago, the idea that CPUs could challenge GPUs on AI budget share was unfathomable – yet agentic AI has flipped the script. 
+
+Find out how agentic AI is rewriting the story for CPUs as the CPU:GPU ratio moves towards 1:1 and how $NVDA, $AMD, $INTC, and $ARM each aim to win in the server CPU market. 
+https://t.co</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@aleabitoreddit（L2_single_stock · 19 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>Oh look… $NVDA CEO warned memory shortage is expected to persist for many years, due to massive scaling demand of AI inf</li><li>I think my personal style of investing is a bit different, just some reflection:
+
+It's inherently discretionary, based o</li><li>Apparently I’m all over Chinese news now?
+
+I just published some research on LeaderDrive (688017) and their role in huma</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063583856025108986">2026-06-07</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>$NVDA</td>
+                <td class="num">1383287</td>
+                <td class="tweet-text">Oh look… $NVDA CEO warned memory shortage is expected to persist for many years, due to massive scaling demand of AI infrastructure.
+
+With further announcements tomorrow.
+
+$MU and $EWY (Samsung/SK Hynix) operating profit projections aren’t looking too crazy anymore? https://t.co/OvjyrifRtO</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063465386960736396">2026-06-07</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>$NVDA $SIVE $XFAB</td>
+                <td class="num">995006</td>
+                <td class="tweet-text">I think my personal style of investing is a bit different, just some reflection:
+
+It's inherently discretionary, based on stuff markets don't know yet. And a culmination of life experiences?
+
+If you look at $AXTI, $RPI, $SIVE, $IQE and others. 
+
+Lot of it is guessing on unstructured relationships then seeing if it's ri</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063211040989733012">2026-06-06</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">865718</td>
+                <td class="tweet-text">Apparently I’m all over Chinese news now?
+
+I just published some research on LeaderDrive (688017) and their role in humanoid supply chains.
+
+Looks like China’s robotics stock sector went up and 688017 hit 20% limit up?
+
+I appreciate they called me “Overseas God”. https://t.co/mdASEvmsj0</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063603368178938193">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>$NVDA $SIVE $SOI</td>
+                <td class="num">638894</td>
+                <td class="tweet-text">On top: $NVDA CEO also called out Silicon Photonics (optical networking) with memory. 
+
+Stating that Nvidia would require “supply volumes beyond imagination”.
+
+What a bullish read through on the SiPH supply chain from $SIVE (now upstream Nvidia ecosystem) to $SOI https://t.co/m6jub4nfzx</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063571485739106593">2026-06-07</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>$NVDA</td>
+                <td class="num">572190</td>
+                <td class="tweet-text">Sure, #1 thing is toxic financing structure/float dynamics. 
+
+Best example is current Neoclouds landscape:
+
+- $IREN is basically trash, since they have $6,000,000,000 ATMs and virtually infinite dilution, likely selling into every rally (structural overhang)
+
+- While $NBIS is now YTD 153%+, from optimal structures (eg.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063609539396862206">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">552111</td>
+                <td class="tweet-text">哇？我的粉丝数竟然突破70万了……而且在过去的短短3天里，我又额外收获了5000名订阅者。
+
+真的非常感谢大家。
+
+尤其要特别感谢最近给予我巨大支持的中文社区！ https://t.co/nLLSohl0lN</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063235166336856251">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>$SIVE</td>
+                <td class="num">512343</td>
+                <td class="tweet-text">If you’re curious:
+
+$4649 for 107,894,491 (100M+) impressions!
+
+All of this is going to dog rescues, will be doing large donations later!
+
+It’s ~$600 / dog rescued, so it scales proportionally with Serenity fan count!
+
+I also believe in making all my profits off $SIVE to $AAOI with stocks in the market, not off followe</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063118835105014006">2026-06-06</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">504186</td>
+                <td class="tweet-text">How are all you regards on $RDDT down -99% after 2 red days? 
+
+Is it that hard just to hold indiviudal stocks like $AAOI or $MRVL that are already high-beta?
+
+You can be right directionally, but wrong on short-term timing. 
+
+One extra week or month makes a huge difference. https://t.co/UrbqiRIIta</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063442668844167613">2026-06-07</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>$AVGO</td>
+                <td class="num">441624</td>
+                <td class="tweet-text">Just very helpful timelines reiterated around glass substrate (source: Trendforce):
+
+- SKC Absolics (011790) H2 2026 (first mover x $AMAT) - $AMD customers
+
+- Samsung electromechanics h2 2027 (009150) x Sumitomo Chem (4005) - Apple / $AVGO / hyperscalers 
+
+Idk about $INTC 2030 reports, we’ll see.
+
+$TSM CoPoS was 2-3Y w</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063798063035228188">2026-06-08</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">436791</td>
+                <td class="tweet-text">I appreciate the objective coverage from 中国证券报 (China Securities Journal) on my LeaderDrive (688017) analysis!
+
+On the article: 
+
+“A single tweet ignites the leading robotics stock, who exactly is the "White-Haired God of Stocks" Serenity?”
+
+Supply chains are global, and my research shows that Chinese companies like 68</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063178421497221604">2026-06-06</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>$NVDA $XFAB</td>
+                <td class="num">418321</td>
+                <td class="tweet-text">Okay... just some more weekend shower thoughts about $XFAB.
+
+I still feel like it could be the next $TSEM, just early stage at a $1.4B MC?
+
+They kinda leapfrogged current gens (which $TSEM are getting volume from) to compete for H2 2027 CPO scale up inflection point ($ASX docs cite Xfab (aka. photonixFAB) as focusing o</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063851425462173726">2026-06-08</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>$TSLA</td>
+                <td class="num">201196</td>
+                <td class="tweet-text">I do think LeaderDrive (688017) is China's standout component leader in the robotics sector.
+
+I've done a lot of research on other robotics picks / $TSLA Optimus suppliers, but LeaderDrive is extremely unique.
+
+Compared to others doing lower margin assembly, or lower value components, with higher design out risk.
+
+West</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063869376542192013">2026-06-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>$XFAB</td>
+                <td class="num">54257</td>
+                <td class="tweet-text">Okay chat, here's your compiled list chat of your favorite 800V DC related ideas. 
+
+1. $IFNNY - $115.8B 
+2. $ON - $46.2B
+3. Lite-On (2301) - $16.03B
+4. 6504.T - $14.1B 
+5. $VICR - $12.8B 
+6. $LFUS - $11.57B
+7. https://t.co/1unM4FPf65 - $8.34B 
+8. $VSH - $7.86B
+9. $ENPH - $7.36B 
+10. $NVTS - $5.77B 
+11. $POWI - $4.30B 
+</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063119223019184297">2026-06-06</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>$XFAB</td>
+                <td class="num">46422</td>
+                <td class="tweet-text">@aleabitoreddit Bro you talked about $XFAB. I bought it dipped 20% now i sold everything. It cost me soo much money</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063468938974138464">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>-</td>
+                <td class="num">23616</td>
+                <td class="tweet-text">Hmm as for life experiences:
+
+-> Currently doing fintech stuff (helps with understanding financial statements, dilution, margins, valuations, etc). 
+-> venture capital stuff (Series A/B company analysis, help to understand TAM, thematic shifts, how a company could grow)
+-> previously AI research building different mode</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063271026323337303">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">19831</td>
+                <td class="tweet-text">@leglock140448 Just donate to your local pet shelter! 
+
+Markets are the biggest wealth creation machine in human history and it's positive sum. 
+
+Institutions already make enough... I've always thought it's time for all the alpha they trade off of to be shared with retail investors first.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063610478883164530">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">17722</td>
+                <td class="tweet-text">@aleabitoreddit 宁静我感觉你可以回报一下中文社区的朋友们，在你的名字后面打一个（白毛股神）</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063178777652568357">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">16174</td>
+                <td class="tweet-text">@aleabitoreddit What kind of conviction is this? Brr or like brrrrr</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2063181550150160640">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">11785</td>
+                <td class="tweet-text">@aleabitoreddit Nvidia invested in Nokia for AI Ran tho. Not for switches.</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@HKuppy（L2_single_stock · 7 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>The Strait of Hormuz isn’t going to reopen ever again through peace negotiations if this happens</li><li>What sort of lunatic escalates a tense situation less than 3 hours before GLOBEX opens..??</li><li>Probably another great opportunity to short oil…🤣</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2063417692573606277">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">131555</td>
+                <td class="tweet-text">The Strait of Hormuz isn’t going to reopen ever again through peace negotiations if this happens</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2063701498299592833">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">27803</td>
+                <td class="tweet-text">What sort of lunatic escalates a tense situation less than 3 hours before GLOBEX opens..??</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2063705975954030929">2026-06-07</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">22287</td>
+                <td class="tweet-text">Probably another great opportunity to short oil…🤣</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2063702463304077806">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">21725</td>
+                <td class="tweet-text">Agree 100%👇👇</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2063816031546556800">2026-06-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">12991</td>
+                <td class="tweet-text">My most recent blog post, framed as a blast from the past…👇👇</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2063812359244898544">2026-06-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">5597</td>
+                <td class="tweet-text">@hkuppy I think some of those old shale fellers are in fact now living in a van down by the river https://t.co/vwX7i53UFL</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2063461570424791344">2026-06-07</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">2492</td>
+                <td class="tweet-text">@hkuppy @DarioCpx @barnes_law It doesn't really boom your economy but Trump sees taking economic pain as a win as long as other countries suffer more.</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@altcap（L3_institutional · 5 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>When gov’t owns / controls the means of production it is socialism. I don’t trust shares in the hands of some future pol</li><li>America is not automatic. Our tech &amp; economic advantage only exists because of America’s unique DNA that from our fo</li><li>Yesterday, President Trump said the White House is exploring ways for Americans to directly benefit from the AI boom, in</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2063250386891235759">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">101833</td>
+                <td class="tweet-text">When gov’t owns / controls the means of production it is socialism. I don’t trust shares in the hands of some future politicians that can coerce or liquidate & spend on whatever their political beliefs.  If purchased or donated the shares should be directly held by American citizens through their @TrumpAccounts or in a</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2063252781478134203">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">92271</td>
+                <td class="tweet-text">America is not automatic. Our tech &amp; economic advantage only exists because of America’s unique DNA that from our founding combined talent, capital, risk tolerance, universities &amp; smart immigration. In the Age of AI this unique American combo is more valuable than ever! 🇺🇸🚀🎯</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2063265496355770850">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">63127</td>
+                <td class="tweet-text">Yesterday, President Trump said the White House is exploring ways for Americans to directly benefit from the AI boom, including potential structures where the public shares in the success of leading AI companies. https://t.co/OHVf3MsQXy</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2063292805519122782">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">30674</td>
+                <td class="tweet-text">Trump is reportedly considering taking stakes in AI companies and having discussions with CEOs in the coming week
+
+Genuinely think that this is the wrong path to head down, especially if we want American leadership in AI
+
+> incumbents become entrenched into the system, destroying competition and incentives for founders</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2063294760295510454">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">2476</td>
+                <td class="tweet-text">@BoringBiz_ The actual concrete talks are with OpenAI and the stakes would be donated. https://t.co/ksob0CTJ5h</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@LynAldenContact（ · 50 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>Things most Americans agree on:
+
+Groceries cost too much.
+
+Tariffs suck and make no sense.
+
+Congress and Presidents shou</li><li>having a baby at 36
+
+realizing you’ll be 60 when they go to high school https://t.co/DER7lH0AC6</li><li>One of Netflix’s biggest fumbles. Two seasons just wasn’t enough for a show like this. It really could’ve been one of th</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062880174254010399">2026-06-05</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">12730178</td>
+                <td class="tweet-text">Things most Americans agree on:
+
+Groceries cost too much.
+
+Tariffs suck and make no sense.
+
+Congress and Presidents shouldn’t trade stocks.
+
+The debt is a mess.
+
+The border should be secure, but legal immigration is good.
+
+Endless wars are stupid, especially ones that nobody wants and have never been explained.
+
+Americ</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062744583617007986">2026-06-05</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">3420722</td>
+                <td class="tweet-text">having a baby at 36
+
+realizing you’ll be 60 when they go to high school https://t.co/DER7lH0AC6</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061754613490139531">2026-06-02</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">790372</td>
+                <td class="tweet-text">One of Netflix’s biggest fumbles. Two seasons just wasn’t enough for a show like this. It really could’ve been one of the greatest shows ever made. https://t.co/xP2S763qdh</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2063468505689649298">2026-06-07</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>-</td>
+                <td class="num">309076</td>
+                <td class="tweet-text">I'm imagining the bears who think that Bitcoin is so weak that if you buy 4% of it and talk a lot, you can destroy the whole network.
+
+It's not even a person, but a group. Bought 4%.
+
+Like, somehow the key weakness of Bitcoin is that if someone buys 4% of it, everything fails.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2063252942086369650">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">186827</td>
+                <td class="tweet-text">Genuinely how can you disagree with this. Who should get the money otherwise? The people who don't push the buttons??</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061442743147147458">2026-06-01</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>-</td>
+                <td class="num">159373</td>
+                <td class="tweet-text">I get why Saylor would sell bitcoin to pay dividend. 
+
+But according to CNBC he also sold $128m in shares
+
+Why would you sell 32 Bitcoin to get $2.5m when you just sold $128m in shares?
+
+I can’t imagine they really need the $2.5m??</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062723043898671317">2026-06-05</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">134133</td>
+                <td class="tweet-text">A lot of people invest like this, too.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061976681703670175">2026-06-03</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">129665</td>
+                <td class="tweet-text">Even as I agree or disagree around the margins at times, more-so in terms of magnitude or timing than overall direction, I continue to view @LukeGromen as one of the absolute best references out there.
+https://t.co/VAChoVxQ82</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062647485462401228">2026-06-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">127188</td>
+                <td class="tweet-text">My June public newsletter is now available:
+https://t.co/q9AWNzBSmY
+
+The issue focuses on defining and planning for the more multipolar and volatile world we have moved into. https://t.co/izMBduY2bV</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2063288806749753847">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>-</td>
+                <td class="num">121328</td>
+                <td class="tweet-text">Okay, Hunter Biden…is Die Hard a Christmas movie? If so, does that mean Lethal Weapon is also a Christmas movie? The people need answers.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062658601773044046">2026-06-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">110535</td>
+                <td class="tweet-text">This is the productive way to approach it.
+
+There are myriad other factors including the poorly-understood relationship between reserve currency status and trade imbalances (i.e. Triffin Dilemma) that I discuss regularly, but ultimately stepping up is better than complaining.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062763887439540254">2026-06-05</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">107858</td>
+                <td class="tweet-text">Linkin Park
+Disturbed
+Evanescence</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2063377239647948922">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">95723</td>
+                <td class="tweet-text">https://t.co/twRGRRe9lu</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062532385376239629">2026-06-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">95194</td>
+                <td class="tweet-text">To be fair though, he was living alone in a harsh desert and watching the whole galaxy go crazy.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061987123561984095">2026-06-03</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">93738</td>
+                <td class="tweet-text">I saw one episode of Lost in college out of necessity and was like, "I don't understand this. Explain the appeal."</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062651332381508052">2026-06-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">91842</td>
+                <td class="tweet-text">What are some of your favorite Japanese stocks or Japanese value investor accounts to follow here?</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062028794110652645">2026-06-03</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">86782</td>
+                <td class="tweet-text">“Nothing stops this train.”
+
+“But what if my xyz candidate wins?”
+
+::Leans in close, as politely as possible, doesn’t know your political view.::
+
+“No.”</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061962950017995186">2026-06-03</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">82910</td>
+                <td class="tweet-text">These things tend to happen more often in eras of fiscal dominance.
+
+They aim for “industrial policy” which means government directive and funding to prioritize certain sectors.
+
+Both major parties are ‘Big Government’ now (that was the Massie battle).</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061820056086950264">2026-06-02</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">81119</td>
+                <td class="tweet-text">https://t.co/XtXOJUaZkG</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062029923275952549">2026-06-03</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">74908</td>
+                <td class="tweet-text">That’s a lot of words to ultimately conclude that nothing stops this train.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061782883765755961">2026-06-02</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>-</td>
+                <td class="num">74891</td>
+                <td class="tweet-text">Many Bitcoiners are upset and beefing with each other. I suspect root cause is the bear market combined with TradFi markets experiencing an AI boom. Folks want a scapegoat for disappointing returns.
+
+BTC could have been more interesting but devs were told we had to ossify...</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061954665898459293">2026-06-02</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">71220</td>
+                <td class="tweet-text">Increasingly from what I'm already doing, I'm more likely to agree to podcasts if they are more grounded in terms of promotion/headlines/thumbnails, and will decline podcasts if I view them as habitually sensational in terms of promotion/headlines/thumbnails.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062482129666142498">2026-06-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">71017</td>
+                <td class="tweet-text">Dude, Where’s My AI-Driven Productivity?
+
+If AI is the most revolutionary technology in history as many predict and markets increasingly price in, it’s odd that 4yrs in developed world macro productivity data shows no change in previous trends.
+
+https://t.co/tbhRinaC5Q https://t.co/guNFJWgzqO</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062001890041164029">2026-06-03</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">69655</td>
+                <td class="tweet-text">My father showed me Desperado when I was eight and it stuck with me.
+
+He was this 60-year old guy watching Die Hard and Desperado with me in a trailer saying things like, "Don't you wait to get hurt. If you see someone's lookin' to hurt you, hit them first. Elbow in the stomach."</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061834382541787228">2026-06-02</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>-</td>
+                <td class="num">61930</td>
+                <td class="tweet-text">Bitcoin is like starlink for money. 
+
+It transcends geography, boundaries, and local infrastructure.
+
+But unlike starlink, it requires no accounts or permission. 
+
+And, with starlink, it's even more true that anyone anywhere can send value.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061988424593109427">2026-06-03</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">58382</td>
+                <td class="tweet-text">It really is artful to see the extent that content creators who were once supposedly anti-establishment themselves became so captured by audience sensationalism or awkward sponsors that they went on to embody the same issues, if not more-so.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062930366969585803">2026-06-05</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">48829</td>
+                <td class="tweet-text">A brief reminder of this utter clown show. https://t.co/FiBpr9cH2j</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2063417622700376075">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">37397</td>
+                <td class="tweet-text">@philosophymeme0 https://t.co/plzSUyqNWS</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061963024240652414">2026-06-03</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">34696</td>
+                <td class="tweet-text">In New Hampshire USA we have about zero knife regulations related to possession or carrying at all.  None. 
+
+I own 50+ knives and regularly carry a Microtech combat troodon or 10 inch belt knife.  You can carry a long knife, switchblade or even a a sword anywhere you want publicly including walking down the street, the</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2063471999293259797">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>-</td>
+                <td class="num">33695</td>
+                <td class="tweet-text">iran being able to mine bitcoin for $1000 suggests that bitcoin isn't really THAT strong compared to the dollar. https://t.co/WqJLAYxTXy</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061983924163625404">2026-06-03</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">32791</td>
+                <td class="tweet-text">Old Boy
+#IYKYK</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062649752563359861">2026-06-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">30995</td>
+                <td class="tweet-text">Sold (I’m 6’5)</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061920301491900805">2026-06-02</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>-</td>
+                <td class="num">29291</td>
+                <td class="tweet-text">Bitcoin is dumping so it’s a great time to tune out the charts and tune in to a great audiobook. 
+
+Check out The Stolguard Incident by @LynAldenContact 
+
+Narrated by me and @carlabitcoin 
+
+https://t.co/FU5wIN1QQB</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062368747445239854">2026-06-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">26819</td>
+                <td class="tweet-text">Hey overseas folks! Have you ever watched Cowboy Bebop?
+Truth is, I still haven’t seen it…</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062723711384355172">2026-06-05</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">26009</td>
+                <td class="tweet-text">Flawless victory https://t.co/mgrotQehfO</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061807718046798289">2026-06-02</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">23079</td>
+                <td class="tweet-text">Surprise outside our bedroom window this morning! https://t.co/wLCz4RzWY9</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061920771258093769">2026-06-02</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">21345</td>
+                <td class="tweet-text">https://t.co/i8T8JerKCK</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062582045696569468">2026-06-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">21089</td>
+                <td class="tweet-text">Bitcoin bear markets used to hit differently... last time it was me and @nvk trying to show @saifedean the superiority of cast iron pans vs stainless steel...
+
+This time no one is even talking about The Pan Wars...
+
+We need to get back to debating what really matters.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062683234631086296">2026-06-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">20951</td>
+                <td class="tweet-text">send the asteroid.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2063469245963379000">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>-</td>
+                <td class="num">15929</td>
+                <td class="tweet-text">@LynAldenContact I think people in general are disgusted that someone like him owns as much as they do. They think it goes against the purpose of btc. I haven't seen really anyone theorizing someone like scam saylor owning 4% of btc being a good thing.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062977913704636566">2026-06-05</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>-</td>
+                <td class="num">15100</td>
+                <td class="tweet-text">On August 11 2025 I went on one of the most popular BTC podcasts @_DannyKnowles and called MSTR and BTC DAT companies ponzi adjacent. @LynAldenContact was sympathetic to my view but liked the management team at $MTPLF.  I didn't. https://t.co/RGerttRg0j</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2063469153059844582">2026-06-07</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">13782</td>
+                <td class="tweet-text">@LynAldenContact The problem is that the guy who bought 4% of the network, does not care about the network, itself.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2063033022639653070">2026-06-05</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">12283</td>
+                <td class="tweet-text">1am in Norway. https://t.co/OyfbfAssA2</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062575572455129146">2026-06-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">11903</td>
+                <td class="tweet-text">I dream of an America where the duty-free hot sauce aisle at CUN is unnecessary. #MNAGA https://t.co/6KbNvPi3VE</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2063402201033171273">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">8008</td>
+                <td class="tweet-text">@Fishythefox2 why are you exploiting the workers who built the machines</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062653451419467946">2026-06-04</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">3895</td>
+                <td class="tweet-text">@LynAldenContact The big 5 Japanese trading houses, Hitachi and Fanuc. A portfolio of these has outperformed QQQ in USD terms since late 2020 and paid healthy dividends along the way.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061945735143149639">2026-06-02</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">3495</td>
+                <td class="tweet-text">@BitPaine https://t.co/n5HJd7tL25</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062648000623653123">2026-06-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">2753</td>
+                <td class="tweet-text">@LynAldenContact Lyn, you've been a bit silent about the whole SCRT drama.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2061977426037506526">2026-06-03</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">1242</td>
+                <td class="tweet-text">@LynAldenContact So the system is about to collapse??? https://t.co/8bKlD4otaX</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/LynAldenContact/status/2062654903407837511">2026-06-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">1239</td>
+                <td class="tweet-text">@LynAldenContact @HyperbolicDisco Hey Lyn, what makes the Japanese trading houses such a compelling value play here? Just curious.</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@KobeissiLetter（L5_market_tape · 29 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>BREAKING: President Trump says the Trump Administration might buy equity stakes in US AI companies and that he will host</li><li>It's official.
+
+Game 3 of the NBA Finals between the New York Knicks and San Antonio Spurs is now the most expensive NBA</li><li>BREAKING: South Korea’s stock market has been halted after falling -8.4% at the open. https://t.co/XdqkQ1LiPe</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063257505854013952">2026-06-06</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">5208854</td>
+                <td class="tweet-text">BREAKING: President Trump says the Trump Administration might buy equity stakes in US AI companies and that he will host a meeting with AI executives as soon as next week, per Reuters.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063117647785427029">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">3677378</td>
+                <td class="tweet-text">It's official.
+
+Game 3 of the NBA Finals between the New York Knicks and San Antonio Spurs is now the most expensive NBA game in history.
+
+The cheapest ticket available? $10,622 per seat.
+
+This game will shatter every previous record by a mile. https://t.co/a54YE9aZaR</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063776212401455433">2026-06-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">3150092</td>
+                <td class="tweet-text">BREAKING: South Korea’s stock market has been halted after falling -8.4% at the open. https://t.co/XdqkQ1LiPe</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063748248636948609">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">1236972</td>
+                <td class="tweet-text">BREAKING: S&amp;P 500 futures erase all losses and turn green after President Trump says Israel has "no choice" but to accept an Iran deal. https://t.co/5OtqB4Ct0S</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063746855591199096">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">1042454</td>
+                <td class="tweet-text">BREAKING: President Trump says Israeli Prime Minister Netanyahu will have "no choice" but to accept a US deal with Iran, because he "calls the shots," per FT.
+
+Details include:
+
+1. "I call the shots. I call all the shots. He [Netanyahu] doesn’t call the shots," Trump said
+
+2. Trump said today's missile strikes by Iran </td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063699434853040221">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">905993</td>
+                <td class="tweet-text">BREAKING: Israel says Iran has launched a wave of ballistic missiles toward Israel moments ago.
+
+This marks the first Iranian attack on Israel since the ceasefire agreement began on April 8th.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063714424465056074">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">628634</td>
+                <td class="tweet-text">BREAKING: President Trump says he is going to call Israeli Prime Minister Netanyahu and "tell him not to strike Iran back," per Axios.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063711243731407300">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">589721</td>
+                <td class="tweet-text">BREAKING: President Trump says the US and Iran are "close to a deal" as a third wave Iranian ballistic missiles is fired toward Israel, per Fox News.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063713542369398990">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">428629</td>
+                <td class="tweet-text">BREAKING: President Trump says he is "not happy" about Israel's earlier strikes on Beirut, Lebanon, and that the attacks were not coordinated with the US, per Fox News.
+
+Trump tells Iran: "You've shot your missiles, that's enough. Get back to the table and make a deal."</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063621705432457667">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">308645</td>
+                <td class="tweet-text">Key Events This Week:
+
+1. May Existing Home Sales data - Tuesday
+
+2. May CPI Inflation data - Wednesday
+
+3. May PPI Inflation data - Thursday
+
+4. OPEC Monthly Report - Thursday
+
+5. MI Inflation Expectations data - Friday
+
+6. MI Consumer Sentiment data - Friday
+
+All eyes are on inflation this week.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063797004971413977">2026-06-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">297021</td>
+                <td class="tweet-text">BREAKING: The Israeli Air Force says it conducted strikes in western and central Iran.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063658969273364799">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">286411</td>
+                <td class="tweet-text">BREAKING: Iran’s Speaker of the Parliament Ghalibaf says the US and Israel are “neither committed to a ceasefire nor believe in dialogue” after Israeli strikes on Beirut today.
+
+Ghalibaf says Israeli strikes on Beirut today and the US blockade of the Strait of Hormuz “turn American and Israeli bases and assets in the r</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063413168534114620">2026-06-07</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">264540</td>
+                <td class="tweet-text">US home sellers are retreating from the market:
+
+Delistings as a proportion of all US home listings rose to 5.8% in April, the highest since March 2020.
+
+Excluding the 2020 pandemic, delistings have never been this high.
+
+The absolute number of delistings rose +3.8% MoM, marking the 2nd consecutive monthly increase.
+
+A</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063667049306456526">2026-06-07</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">260434</td>
+                <td class="tweet-text">BREAKING: The spokesman for the Iranian Parliament’s National Security Commission says Iran will “deliver a decisive and painful response” to the Israeli attack on Beirut today.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063743880504193510">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">254658</td>
+                <td class="tweet-text">BREAKING: US stock market futures fall as markets reopen for the first time since Israel's attack on Beirut and Iran's retaliation:
+
+1. S&P 500: -0.3%
+2. Nasdaq 100: -0.3%
+3. Dow Jones: -0.3%
+4. WTI Crude: +4.0%
+5. Brent: +3.5%
+6. Silver: -2.0%
+
+The Iran War ceasefire appears to be falling apart.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063709886693691823">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">236924</td>
+                <td class="tweet-text">BREAKING: Israel says it will retaliate against Iran in response to the Iranian ballistic missile attack, per Reuters.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063319426330460345">2026-06-06</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">228777</td>
+                <td class="tweet-text">BREAKING: Global central banks acquired +17 tonnes of gold in April, the 2nd monthly purchase this year.
+
+This marks a sharp reversal from March, when central banks sold -30 tonnes of gold driven by Turkey and Russia.
+
+Poland led purchases at +14 tonnes, bringing its year-to-date total to +45 tonnes, with gold reserves</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063379041969688802">2026-06-06</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">223033</td>
+                <td class="tweet-text">US tech layoffs are surging:
+
+US-based technology employers announced 38,242 job cuts in May, the highest monthly total since August 2024, according to Challenger Gray data.
+
+Year-to-date, tech sector job cuts rose +66% YoY, to 123,653, the highest among all sectors, and 3x larger than transportation, the next closest </td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063353454085439856">2026-06-06</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">206536</td>
+                <td class="tweet-text">The US government is becoming increasingly dependent on private investors to finance its growing debt burden:
+
+Privately held US Treasury debt maturing within 1 year is up to a record $8.3 trillion.
+
+This figure has DOUBLED over the last 5 years, reflecting the government's growing reliance on short-term financing from</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063698184308748664">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">202374</td>
+                <td class="tweet-text">BREAKING: Israeli officials say there are “indications” of a possible Iranian missile attack in the coming hours.
+
+Just hours ago, Iran said it would “deliver a decisive and painful response” to the Israeli attack on Beirut today.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063743061704814742">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">189716</td>
+                <td class="tweet-text">BREAKING: US oil prices surge over +4% to $94/barrel after Israel attacks Beirut and Iran retaliates with ballistic missiles. https://t.co/q6hu2NwWNQ</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063708779019923639">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">184968</td>
+                <td class="tweet-text">BREAKING: Iranian state media says Iran has fired a third wave of ballistic missiles toward Israel.
+
+President Trump is being briefed on the situation, according to a US official.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063443896172970373">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">179173</td>
+                <td class="tweet-text">American works are taking home a smaller percentage of corporate profits than ever before.
+
+Employee compensation as a % of corporate GDP has fallen to ~54%, the lowest since records began in 1948.
+
+In other words, workers are receiving ~54% of the income generated by corporations, while the remaining ~46% goes to prof</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063293791709048859">2026-06-06</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">155460</td>
+                <td class="tweet-text">Iranian oil exports are collapsing:
+
+Iran exported just ~209,000 barrels per day of crude oil and condensate in May, the lowest since early 2020.
+
+This marks a -84% decline from April levels, which stood at 1.34 million barrels per day, and -89% from March levels, which were at ~1.90 million barrels per day.
+
+As a resu</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063638389203644716">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">154084</td>
+                <td class="tweet-text">Demand for protection against a South Korean stock market decline is surging:
+
+Put option open interest in the South Korea ETF, $EWY, is up to ~880,000 contracts, the highest in at least 12 months.
+
+The total number of outstanding put option contracts has QUADRUPLED over the last several weeks.
+
+By comparison, call opt</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063282263240958122">2026-06-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">134951</td>
+                <td class="tweet-text">US small business hiring intentions are plummeting:
+
+Just 9% of small business owners say they plan to hire over the next 3 months, the lowest since May 2020.
+
+This percentage has HALVED over the last 6 months.
+
+This is now in-line with the levels seen during the 2001 recession and at the beginning of the 2008 Financia</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063685444554961125">2026-06-07</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">107928</td>
+                <td class="tweet-text">More Americans are stuck without work for longer:
+
+The number of Americans unemployed for 27+ weeks rose by +155,000 in May to 1.99 million, the highest since December 2021.
+
+YoY, this figure has surged +524,000, the largest annual increase since August 2021.
+
+As a % of unemployment, this metric is up to 27.5%, the hig</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063768964946112813">2026-06-07</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">103987</td>
+                <td class="tweet-text">Container shipping rates are surging amid the Iran War:
+
+The spot rate for a 40-foot container from Asia to the US West Coast jumped +$655, or +20%, over the last week, to ~$3,933, the highest in at least 6 months.
+
+At the same time, the rate from Asia to Northern Europe jumped +$793, or +27%, to ~$3,649.
+
+Since the st</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2063689950000722078">2026-06-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">82014</td>
+                <td class="tweet-text">The Kobeissi Letter for the week of June 8th has been published and may be viewed through the link below:
+
+https://t.co/9c65UCffkW
+
+The Chart of the Week for the week of June 8th has been published. View or sign up for FREE through the link below:
+
+https://t.co/lFT7Stiwzt</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@muddywatersre（L6_risk · 8 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>After I review more trial materials, I could have more to say on the Andrew Left verdict; but, I’m clear on the followin</li><li>Actually, he (and some others who've replied) are great examples of the behavior for which Andrew was convicted. I am an</li><li>I agree with a lot of this take.</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2062576569617428678">2026-06-04</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">98408</td>
+                <td class="tweet-text">After I review more trial materials, I could have more to say on the Andrew Left verdict; but, I’m clear on the following for now. The jury convicted Andrew of not actually believing the opinions he stated in his Tweets. The evidence consisted of possibly out of context, but impolitic messages, a lack of a paper trail </td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2062616414075453675">2026-06-04</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">19725</td>
+                <td class="tweet-text">Actually, he (and some others who've replied) are great examples of the behavior for which Andrew was convicted. I am an activist short seller. I am a former attorney. I have had years of legal advice about this business. I have been investing for over 40 years. Yet, someone who is presumably none of these things (poss</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2062599216300470615">2026-06-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">18393</td>
+                <td class="tweet-text">I agree with a lot of this take.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2062617229552656426">2026-06-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">18252</td>
+                <td class="tweet-text">This is a key illustration of the problem with the Andrew Left conviction for Tweeting opinions he supposedly didn't hold in good faith.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2061542098294247470">2026-06-01</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">16437</td>
+                <td class="tweet-text">MW’s Left Curve (our systematic momentum strategy) top ranked stock for June is $CIEN.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2062577649290293260">2026-06-04</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">3955</td>
+                <td class="tweet-text">@muddywatersre I think Left’s activism post 2018 muddles the work of other short sellers
+
+It was cheap. 
+
+Agree with everything you’re saying on the basis of what you’re saying -  just disagree on how similar it makes all activist short selling seem.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2062583145782706626">2026-06-04</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">1788</td>
+                <td class="tweet-text">@muddywatersre &gt;Prosecuting the offenders is impossible as a practical matter due to their number.
+
+LOL so people should just start stealing because you know, if it's enough of them they won't be able to prosecute. What a load of bs.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2062596691241349508">2026-06-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">1236</td>
+                <td class="tweet-text">@muddywatersre Carson, looking forward, what might be different when he appeals. There seems to be a pattern of rulings being over turned (?).</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      
+    </section>
+
+    <section>
+      <h2>今日高互动推文</h2>
+      <ul class="list">
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2063257505854013952">@KobeissiLetter</a></strong> <span class="small">5208854 次浏览 · 观点强度 4</span><br>BREAKING: President Trump says the Trump Administration might buy equity stakes in US AI companies and that he will host a meeting with AI executives as soon as next week, per Reuters.</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2063117647785427029">@KobeissiLetter</a></strong> <span class="small">3677378 次浏览 · 观点强度 4</span><br>It's official.
+
+Game 3 of the NBA Finals between the New York Knicks and San Antonio Spurs is now the most expensive NBA game in history.
+
+The cheapest ticket available? $10,622 per seat.
+
+This game will shatter every previous record by a mile. https://t.co/a54YE9aZaR</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2063776212401455433">@KobeissiLetter</a></strong> <span class="small">3150092 次浏览 · 观点强度 4</span><br>BREAKING: South Korea’s stock market has been halted after falling -8.4% at the open. https://t.co/XdqkQ1LiPe</li>
+        
+        <li><strong><a href="https://x.com/aleabitoreddit/status/2063583856025108986">@aleabitoreddit</a></strong> <span class="small">1383287 次浏览 · 观点强度 4</span><br>Oh look… $NVDA CEO warned memory shortage is expected to persist for many years, due to massive scaling demand of AI infrastructure.
+
+With further announcements tomorrow.
+
+$MU and $EWY (Samsung/SK Hynix) operating profit projections aren’t looking too crazy anymore? https://t.co/</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2063748248636948609">@KobeissiLetter</a></strong> <span class="small">1236972 次浏览 · 观点强度 4</span><br>BREAKING: S&amp;P 500 futures erase all losses and turn green after President Trump says Israel has "no choice" but to accept an Iran deal. https://t.co/5OtqB4Ct0S</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2063746855591199096">@KobeissiLetter</a></strong> <span class="small">1042454 次浏览 · 观点强度 4</span><br>BREAKING: President Trump says Israeli Prime Minister Netanyahu will have "no choice" but to accept a US deal with Iran, because he "calls the shots," per FT.
+
+Details include:
+
+1. "I call the shots. I call all the shots. He [Netanyahu] doesn’t call the shots," Trump said
+
+2. Tru</li>
+        
+        <li><strong><a href="https://x.com/aleabitoreddit/status/2063465386960736396">@aleabitoreddit</a></strong> <span class="small">995006 次浏览 · 观点强度 5</span><br>I think my personal style of investing is a bit different, just some reflection:
+
+It's inherently discretionary, based on stuff markets don't know yet. And a culmination of life experiences?
+
+If you look at $AXTI, $RPI, $SIVE, $IQE and others. 
+
+Lot of it is guessing on unstructu</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2063699434853040221">@KobeissiLetter</a></strong> <span class="small">905993 次浏览 · 观点强度 4</span><br>BREAKING: Israel says Iran has launched a wave of ballistic missiles toward Israel moments ago.
+
+This marks the first Iranian attack on Israel since the ceasefire agreement began on April 8th.</li>
+        
+        <li><strong><a href="https://x.com/aleabitoreddit/status/2063211040989733012">@aleabitoreddit</a></strong> <span class="small">865718 次浏览 · 观点强度 4</span><br>Apparently I’m all over Chinese news now?
+
+I just published some research on LeaderDrive (688017) and their role in humanoid supply chains.
+
+Looks like China’s robotics stock sector went up and 688017 hit 20% limit up?
+
+I appreciate they called me “Overseas God”. https://t.co/mdA</li>
+        
+        <li><strong><a href="https://x.com/aleabitoreddit/status/2063603368178938193">@aleabitoreddit</a></strong> <span class="small">638894 次浏览 · 观点强度 4</span><br>On top: $NVDA CEO also called out Silicon Photonics (optical networking) with memory. 
+
+Stating that Nvidia would require “supply volumes beyond imagination”.
+
+What a bullish read through on the SiPH supply chain from $SIVE (now upstream Nvidia ecosystem) to $SOI https://t.co/m6j</li>
+        
+      </ul>
+    </section>
+
+    
+    <section>
+      <h2>周度摘要：宏观与风险</h2>
+      
+      <div class="card">
+        <h3>@muddywatersre（L6_risk · activist_short）</h3>
+        <ul class="list">
+          
+          <li><a href="https://x.com/muddywatersre/status/2062576569617428678">2026-06-04</a> · 98408 次浏览 · RISK_FLAG<br>After I review more trial materials, I could have more to say on the Andrew Left verdict; but, I’m clear on the following for now. The jury convicted Andrew of not actually believing the opinions he stated in his Tweets. The evidence consis</li>
+          
+          <li><a href="https://x.com/muddywatersre/status/2062616414075453675">2026-06-04</a> · 19725 次浏览 · SHORT<br>Actually, he (and some others who've replied) are great examples of the behavior for which Andrew was convicted. I am an activist short seller. I am a former attorney. I have had years of legal advice about this business. I have been invest</li>
+          
+          <li><a href="https://x.com/muddywatersre/status/2062599216300470615">2026-06-04</a> · 18393 次浏览 · NEUTRAL<br>I agree with a lot of this take.</li>
+          
+          <li><a href="https://x.com/muddywatersre/status/2062617229552656426">2026-06-04</a> · 18252 次浏览 · NEUTRAL<br>This is a key illustration of the problem with the Andrew Left conviction for Tweeting opinions he supposedly didn't hold in good faith.</li>
+          
+          <li><a href="https://x.com/muddywatersre/status/2061542098294247470">2026-06-01</a> · 16437 次浏览 · NEUTRAL<br>MW’s Left Curve (our systematic momentum strategy) top ranked stock for June is $CIEN.</li>
+          
+        </ul>
+      </div>
+      
+    </section>
+    
+
+    <footer>由 FinTwit Tracker 生成 · 2026-06-09T03:56:02</footer>
+  </main>
+</body>
+</html>

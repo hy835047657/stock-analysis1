@@ -1,0 +1,43 @@
+name: daily-fintwit
+on:
+  schedule:
+    - cron: '0 2 * * *'   # 02:00 UTC = 10:00 Asia/Shanghai
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test
+      - name: Run pipeline
+        env:
+          TWEX_API_KEY: ${{ secrets.TWEX_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+          OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+          LLM_CLASSIFIER_ENABLED: ${{ vars.LLM_CLASSIFIER_ENABLED || 'true' }}
+          LLM_CLASSIFIER_BATCH_SIZE: ${{ vars.LLM_CLASSIFIER_BATCH_SIZE || '8' }}
+          LLM_CLASSIFIER_TIMEOUT_MS: ${{ vars.LLM_CLASSIFIER_TIMEOUT_MS || '120000' }}
+          PIPELINE_WINDOW_HOURS: ${{ vars.PIPELINE_WINDOW_HOURS || '56' }}
+          TWEX_REUSE_RAW: ${{ vars.TWEX_REUSE_RAW || 'false' }}
+          LARK_WEBHOOK: ${{ secrets.LARK_WEBHOOK }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          REPORT_PUBLIC_BASE_URL: ${{ vars.REPORT_PUBLIC_BASE_URL }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run ci:daily
+      - name: Commit public report
+        run: |
+          git config user.name  github-actions
+          git config user.email github-actions@github.com
+          git add public data/processed/ledger.json || true
+          git commit -m "daily report $(date -u +%Y-%m-%d)" || true
+          git push || true

@@ -1,0 +1,37 @@
+{
+  "name": "fintwit-tracker",
+  "version": "1.1.0",
+  "description": "Open-source agent that tracks overseas stock bloggers on X, aggregates views, tracks positions, and surfaces consensus/risk signals.",
+  "type": "module",
+  "main": "src/agent/orchestrator.js",
+  "scripts": {
+    "start": "node src/agent/orchestrator.js --run-once",
+    "schedule": "node src/agent/orchestrator.js --schedule",
+    "report:sync-public": "node scripts/sync-public-reports.js",
+    "report:upload-supabase": "node scripts/upload-report-to-supabase.js",
+    "ci:daily": "node src/agent/orchestrator.js --run-once && npm run report:sync-public && npm run report:upload-supabase",
+    "build:vercel": "npm run report:sync-public",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "axios-retry": "^4.5.0",
+    "dotenv": "^16.4.5",
+    "js-yaml": "^4.1.0",
+    "node-cron": "^3.0.3",
+    "nunjucks": "^3.2.4",
+    "openai": "^4.67.0",
+    "pino": "^9.4.0",
+    "pino-pretty": "^11.2.2",
+    "yahoo-finance2": "^2.13.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.2"
+  },
+  "license": "MIT"
+}

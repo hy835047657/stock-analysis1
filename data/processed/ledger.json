@@ -1,0 +1,132 @@
+{
+  "Beth_Kindig": {
+    "AVGO": [
+      {
+        "date": "2026-06-05",
+        "stance": "LONG",
+        "conviction": 4,
+        "url": "https://x.com/Beth_Kindig/status/1001"
+      },
+      {
+        "date": "2026-06-05",
+        "stance": "LONG",
+        "conviction": 4,
+        "url": "https://x.com/Beth_Kindig/status/1001"
+      }
+    ],
+    "NVDA": [
+      {
+        "date": "2026-06-05",
+        "stance": "LONG",
+        "conviction": 4,
+        "url": "https://x.com/Beth_Kindig/status/1001"
+      },
+      {
+        "date": "2026-06-05",
+        "stance": "LONG",
+        "conviction": 4,
+        "url": "https://x.com/Beth_Kindig/status/1001"
+      },
+      {
+        "date": "2026-06-08",
+        "stance": "SHORT",
+        "conviction": 1,
+        "url": "https://x.com/Beth_Kindig/status/2063715015274672354"
+      }
+    ]
+  },
+  "aleabitoreddit": {
+    "AVGO": [
+      {
+        "date": "2026-06-05",
+        "stance": "LONG",
+        "conviction": 4,
+        "url": "https://x.com/aleabitoreddit/status/2001"
+      },
+      {
+        "date": "2026-06-05",
+        "stance": "LONG",
+        "conviction": 4,
+        "url": "https://x.com/aleabitoreddit/status/2001"
+      },
+      {
+        "date": "2026-06-08",
+        "stance": "SHORT",
+        "conviction": 3,
+        "url": "https://x.com/aleabitoreddit/status/2063442668844167613"
+      }
+    ],
+    "TSLA": [
+      {
+        "date": "2026-06-05",
+        "stance": "SHORT",
+        "conviction": 2,
+        "url": "https://x.com/aleabitoreddit/status/2002"
+      },
+      {
+        "date": "2026-06-05",
+        "stance": "SHORT",
+        "conviction": 2,
+        "url": "https://x.com/aleabitoreddit/status/2002"
+      },
+      {
+        "date": "2026-06-08",
+        "stance": "LONG",
+        "conviction": 4,
+        "url": "https://x.com/aleabitoreddit/status/2063851425462173726"
+      }
+    ],
+    "NVDA": [
+      {
+        "date": "2026-06-08",
+        "stance": "LONG",
+        "conviction": 4,
+        "url": "https://x.com/aleabitoreddit/status/2063603368178938193"
+      },
+      {
+        "date": "2026-06-08",
+        "stance": "SHORT",
+        "conviction": 5,
+        "url": "https://x.com/aleabitoreddit/status/2063571485739106593"
+      }
+    ],
+    "SIVE": [
+      {
+        "date": "2026-06-08",
+        "stance": "LONG",
+        "conviction": 4,
+        "url": "https://x.com/aleabitoreddit/status/2063603368178938193"
+      },
+      {
+        "date": "2026-06-08",
+        "stance": "LONG",
+        "conviction": 5,
+        "url": "https://x.com/aleabitoreddit/status/2063465386960736396"
+      }
+    ],
+    "SOI": [
+      {
+        "date": "2026-06-08",
+        "stance": "LONG",
+        "conviction": 4,
+        "url": "https://x.com/aleabitoreddit/status/2063603368178938193"
+      }
+    ],
+    "XFAB": [
+      {
+        "date": "2026-06-08",
+        "stance": "LONG",
+        "conviction": 4,
+        "url": "https://x.com/aleabitoreddit/status/2063465386960736396"
+      },
+      {
+        "date": "2026-06-08",
+        "stance": "LONG",
+        "conviction": 5,
+        "url": "https://x.com/aleabitoreddit/status/2063465386960736396"
+      }
+    ]
+  },
+  "HKuppy": {},
+  "altcap": {}
+}

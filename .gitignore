@@ -1,0 +1,12 @@
+node_modules/
+.npm-cache/
+.env
+data/raw/
+data/processed/*
+!data/processed/.gitkeep
+!data/processed/ledger.json
+data/cache/
+data/reports/
+.DS_Store
+*.log
+coverage/

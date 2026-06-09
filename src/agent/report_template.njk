@@ -1,0 +1,114 @@
+# FinTwit 每日简报 — {{ date }}
+
+> 统计窗口：常规层近 {{ window_hours }} 小时 · 跟踪 {{ blogger_count }} 位博主 · 常规窗口内 {{ tweet_count }} 条推文
+{% if weekly_has_any %}> **本期包含周度摘要**：L4_macro / L6_risk 层使用 7 天窗口{% endif %}
+
+{{ disclaimer }}
+
+---
+
+## 1. 今日热点
+
+{% if topic_heat.length %}
+| 主题 | 提及次数 | 相关博主 |
+|---|---|---|
+{% for t in topic_heat.slice(0, 6) %}| {{ t.topic }} | {{ t.count }} | {{ t.bloggers.join(", ") }} |
+{% endfor %}{% else %}*当前窗口内暂无明显热点。*
+{% endif %}
+
+---
+
+## 2. 多博主共识
+
+### 🟢 做多共识（至少 2 位博主，做多加权分 > 做空加权分 1.5 倍）
+{% if consensus_long.length %}{% for c in consensus_long.slice(0, 8) %}- **{{ c.ticker }}**（分数 {{ c.score }}，{{ c.n_bloggers }} 位博主）：{% for b in c.by %}[{{ b.handle }}]({{ b.url }}){% if not loop.last %}，{% endif %}{% endfor %}
+{% endfor %}{% else %}*今日暂无做多共识。*
+{% endif %}
+
+### 🔴 做空共识
+{% if consensus_short.length %}{% for c in consensus_short.slice(0, 8) %}- **{{ c.ticker }}**（分数 {{ c.score }}）：{% for b in c.by %}[{{ b.handle }}]({{ b.url }}){% if not loop.last %}，{% endif %}{% endfor %}
+{% endfor %}{% else %}*今日暂无做空共识。*
+{% endif %}
+
+### 🟡 分歧标的（博主观点相反）
+{% if divergence.length %}{% for d in divergence.slice(0, 5) %}- **{{ d.ticker }}**：做多权重 {{ d.long_w }} vs 做空权重 {{ d.short_w }}
+{% endfor %}{% else %}*暂无明显分歧。*
+{% endif %}
+
+---
+
+## 3. 仓位/观点变化（相对历史记录）
+
+{% for handle, diff in position_diffs %}
+### @{{ handle }}
+{% if diff.new.length %}**🆕 新提及标的**：{% for n in diff.new %}{{ n.ticker }}{% if not loop.last %}，{% endif %}{% endfor %}
+{% endif %}{% if diff.reinforced.length %}**📈 观点强度提升**：{% for r in diff.reinforced %}{{ r.ticker }}（{{ r.from }}→{{ r.to }}）{% if not loop.last %}，{% endif %}{% endfor %}
+{% endif %}{% if not diff.new.length and not diff.reinforced.length %}*暂无新的仓位信号。*
+{% endif %}{% endfor %}
+
+---
+
+## 4. 风险雷达
+
+{% if risk.red_flags.length %}{% for r in risk.red_flags %}- ⚠️ **{{ r.ticker }}** {% if r.in_long_consensus %}**[与做多共识重叠]**{% endif %}
+{% for s in r.risk_sources %}  - [@{{ s.handle }}]({{ s.url }}): {{ s.snippet_zh or s.snippet }}
+{% endfor %}{% endfor %}{% else %}*今日暂无风险提醒。*
+{% endif %}
+
+{% if risk.generic_risk_posts.length %}**泛风险讨论：**
+{% for g in risk.generic_risk_posts.slice(0, 5) %}- [@{{ g.handle }}]({{ g.url }}): {{ g.snippet_zh or g.snippet }}
+{% endfor %}{% endif %}
+
+---
+
+## 5. 回测快照（按博主统计，已验证观点的 30 日胜率）
+
+| 博主 | 样本数 | 30 日胜率 |
+|---|---|---|
+{% for h, s in backtest %}| @{{ h }} | {{ s.n }} | {% if s.win_rate_30d !== null %}{{ s.win_rate_30d }}%{% else %}暂无{% endif %} |
+{% endfor %}
+
+---
+
+## 6. 按博主汇总与中文详情
+
+{% if blogger_summaries.length %}{% for b in blogger_summaries %}
+<details>
+<summary>@{{ b.handle }}（{{ b.layer }} · {{ b.count }} 条）</summary>
+
+{% if b.highlights.length %}**摘要：**{% for h in b.highlights %}
+- {{ h }}
+{% endfor %}{% endif %}
+
+| 时间 | 观点 | 主题 | 标的 | 浏览 | 中文翻译/摘要 |
+|---|---|---|---|---:|---|
+{% for it in b.items %}| [{{ it.created_at.slice(0, 10) }}]({{ it.url }}) | {{ it.stance }} | {{ it.topic }} | {% if it.tickers.length %}{{ it.tickers.join(" ") }}{% else %}-{% endif %} | {{ it.view_count }} | {{ (it.translation_zh or it.summary_zh or it.text).slice(0, 260) }} |
+{% endfor %}
+
+</details>
+{% endfor %}{% else %}*暂无可汇总的过滤后推文。*
+{% endif %}
+
+---
+
+## 7. 今日高互动推文
+
+{% for t in top_tweets.slice(0, 10) %}- **[@{{ t.handle }}]({{ t.url }})**（{{ t.view_count }} 次浏览，观点强度 {{ t.conviction }}）：{{ (t.translation_zh or t.summary_zh or t.text).slice(0, 280) }}
+{% endfor %}
+
+{% if weekly_has_any %}
+---
+
+## 8. 📅 周度摘要：宏观与风险（近 7 天）
+
+> 本区块每周出现一次，用于呈现 L4_macro 与 L6_risk 层中低频但高信号密度的内容。
+
+{% for handle, bucket in weekly %}
+### @{{ handle }} ({{ bucket.layer }} · {{ bucket.function }})
+
+{% for it in bucket.items.slice(0, 5) %}- **[{{ it.created_at.slice(0, 10) }}]({{ it.url }})**（{{ it.view_count }} 次浏览，{{ it.stance }}{% if it.tickers.length %}，标的：{{ it.tickers.join(" ") }}{% endif %}）：{{ (it.translation_zh or it.summary_zh or it.text).slice(0, 240) }}
+{% endfor %}{% endfor %}{% endif %}
+
+---
+
+_由 FinTwit Tracker 生成 · {{ generated_at }}_
