@@ -1,6 +1,7 @@
 // Skill: viewClassifier
 // Classify each tweet into stance / topic / tickers / conviction.
 import path from 'node:path';
+import crypto from 'node:crypto';
 import axios from 'axios';
 import {
   loadConfig, loadJson, saveJson, DATA, todayUtcStr,
@@ -52,6 +53,12 @@ export function convictionOf(t) {
 
 function llmEnabled() {
   return String(process.env.LLM_CLASSIFIER_ENABLED || '').toLowerCase() === 'true';
+}
+
+function cacheKeyFor(item) {
+  const id = item.tweet_id || `${item.handle}:${item.created_at}`;
+  const hash = crypto.createHash('sha1').update(item.text || '').digest('hex').slice(0, 12);
+  return `${item.handle}:${id}:${hash}`;
 }
 
 function clampConviction(value, fallback) {
@@ -230,13 +237,55 @@ async function enrichBatchWithLLM(items) {
 }
 
 async function enrichItemsWithLLM(items) {
-  const batchSize = Math.max(1, Number(process.env.LLM_CLASSIFIER_BATCH_SIZE || 8));
-  const enriched = [];
-  for (let i = 0; i < items.length; i += batchSize) {
-    const batch = items.slice(i, i + batchSize);
-    enriched.push(...await enrichBatchWithLLM(batch));
-    logger.info(`LLM classified batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(items.length / batchSize)} (${batch.length} tweets)`);
+  const cachePath = path.join(DATA, 'cache', 'llm-classifier.json');
+  const cache = (await loadJson(cachePath, {})) || {};
+  const batchSize = Math.max(1, Number(process.env.LLM_CLASSIFIER_BATCH_SIZE || 20));
+  const concurrency = Math.max(1, Number(process.env.LLM_CLASSIFIER_CONCURRENCY || 2));
+  const enriched = new Array(items.length);
+  const missing = [];
+
+  items.forEach((item, index) => {
+    const key = cacheKeyFor(item);
+    if (cache[key]) {
+      enriched[index] = { ...item, ...cache[key], classifier_cached: true };
+    } else {
+      missing.push({ item, index, key });
+    }
+  });
+
+  const batches = [];
+  for (let i = 0; i < missing.length; i += batchSize) {
+    batches.push(missing.slice(i, i + batchSize));
   }
+
+  let next = 0;
+  const workers = Array.from({ length: Math.min(concurrency, batches.length) }, async () => {
+    while (next < batches.length) {
+      const batchIndex = next++;
+      const batch = batches[batchIndex];
+      const result = await enrichBatchWithLLM(batch.map(row => row.item));
+      result.forEach((item, offset) => {
+        const row = batch[offset];
+        enriched[row.index] = item;
+        cache[row.key] = {
+          topic: item.topic,
+          stance: item.stance,
+          conviction: item.conviction,
+          summary_zh: item.summary_zh,
+          translation_zh: item.translation_zh,
+          classifier: item.classifier,
+          classifier_error: item.classifier_error,
+        };
+      });
+      logger.info(`LLM classified batch ${batchIndex + 1}/${batches.length} (${batch.length} tweets)`);
+    }
+  });
+  await Promise.all(workers);
+
+  if (missing.length) {
+    await saveJson(cachePath, cache);
+  }
+  logger.info(`LLM cache hit ${items.length - missing.length}/${items.length}`);
   return enriched;
 }
 

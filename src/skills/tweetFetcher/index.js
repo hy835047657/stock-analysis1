@@ -5,7 +5,7 @@ import path from 'node:path';
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 import {
-  loadConfig, loadJson, nowUtc, hoursAgo, todayUtcStr, saveJson, sleep, logger, DATA,
+  loadConfig, loadJson, hoursAgo, todayUtcStr, saveJson, logger, DATA,
 } from '../../common/index.js';
 
 const TWEX_BASE = 'https://api.twexapi.io/twitter';
@@ -45,6 +45,19 @@ function reuseRawEnabled() {
   return String(process.env.TWEX_REUSE_RAW || '').toLowerCase() === 'true';
 }
 
+async function mapLimit(items, limit, worker) {
+  const results = new Array(items.length);
+  let next = 0;
+  const workers = Array.from({ length: Math.min(limit, items.length) }, async () => {
+    while (next < items.length) {
+      const index = next++;
+      results[index] = await worker(items[index], index);
+    }
+  });
+  await Promise.all(workers);
+  return results;
+}
+
 export async function fetchAll() {
   const cfg = loadConfig();
   const token = process.env.TWEX_API_KEY;
@@ -54,9 +67,9 @@ export async function fetchAll() {
   const limit = cfg.pipeline.per_account_limit;
   const minViews = cfg.pipeline.min_view_count ?? 0;
   const dateDir = path.join(DATA, 'raw', todayUtcStr());
+  const concurrency = Math.max(1, Number(process.env.TWEX_FETCH_CONCURRENCY || 3));
 
-  const summary = {};
-  for (const b of cfg.bloggers) {
+  const rows = await mapLimit(cfg.bloggers, concurrency, async (b) => {
     const h = b.handle;
     const win = windowHoursFor(b, cfg);
     const cutoff = hoursAgo(win);
@@ -72,8 +85,7 @@ export async function fetchAll() {
         raw = await fetchOne(h, limit, token);
       } catch (e) {
         logger.error({ handle: h, err: e.message }, 'fetch failed');
-        summary[h] = { error: e.message, count: 0, window_hours: win, layer: b.layer };
-        continue;
+        return [h, { error: e.message, count: 0, window_hours: win, layer: b.layer }];
       }
     }
 
@@ -108,8 +120,9 @@ export async function fetchAll() {
     };
     const tag = win > defaultWindow ? ' [WEEKLY]' : '';
     logger.info(`[${h}]${tag} kept ${filtered.length}/${raw.length} tweets in last ${win}h`);
-    await sleep(500);
-  }
+    return [h, summary];
+  });
+  const summary = Object.fromEntries(rows);
   await saveJson(path.join(dateDir, '_summary.json'), summary);
   return summary;
 }

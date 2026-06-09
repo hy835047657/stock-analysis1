@@ -17,6 +17,13 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm test
+      - name: Restore runtime cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data/cache
+          key: runtime-cache-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            runtime-cache-${{ runner.os }}-
       - name: Run pipeline
         env:
           TWEX_API_KEY: ${{ secrets.TWEX_API_KEY }}
@@ -24,16 +31,24 @@ jobs:
           OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
           OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
           LLM_CLASSIFIER_ENABLED: ${{ vars.LLM_CLASSIFIER_ENABLED || 'true' }}
-          LLM_CLASSIFIER_BATCH_SIZE: ${{ vars.LLM_CLASSIFIER_BATCH_SIZE || '8' }}
+          LLM_CLASSIFIER_BATCH_SIZE: ${{ vars.LLM_CLASSIFIER_BATCH_SIZE || '20' }}
+          LLM_CLASSIFIER_CONCURRENCY: ${{ vars.LLM_CLASSIFIER_CONCURRENCY || '2' }}
           LLM_CLASSIFIER_TIMEOUT_MS: ${{ vars.LLM_CLASSIFIER_TIMEOUT_MS || '120000' }}
           PIPELINE_WINDOW_HOURS: ${{ vars.PIPELINE_WINDOW_HOURS || '56' }}
           TWEX_REUSE_RAW: ${{ vars.TWEX_REUSE_RAW || 'false' }}
+          TWEX_FETCH_CONCURRENCY: ${{ vars.TWEX_FETCH_CONCURRENCY || '3' }}
           LARK_WEBHOOK: ${{ secrets.LARK_WEBHOOK }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           REPORT_PUBLIC_BASE_URL: ${{ vars.REPORT_PUBLIC_BASE_URL }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: npm run ci:daily
+      - name: Save runtime cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/cache
+          key: runtime-cache-${{ runner.os }}-${{ github.run_id }}
       - name: Commit public report
         run: |
           git config user.name  github-actions
@@ -44,6 +59,8 @@ jobs:
       - name: Wait for public report
         env:
           REPORT_PUBLIC_BASE_URL: ${{ vars.REPORT_PUBLIC_BASE_URL }}
+          PUBLIC_REPORT_WAIT_SECONDS: ${{ vars.PUBLIC_REPORT_WAIT_SECONDS || '90' }}
+          PUBLIC_REPORT_WAIT_INTERVAL_SECONDS: ${{ vars.PUBLIC_REPORT_WAIT_INTERVAL_SECONDS || '5' }}
         run: npm run report:wait-public
       - name: Push notification
         env:
