@@ -10,7 +10,7 @@
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
-│       Orchestrator (Node.js, ESM)  ·  node-cron 10:00 CST      │
+│       Orchestrator (Node.js, ESM)  ·  node-cron 15:10 CST      │
 └───┬────────────────────────────────────────────────────────────┘
     │
     ▼
@@ -94,7 +94,7 @@ This repo is prepared for a Vercel + GitHub Actions + Supabase deployment:
 2. Push this repository to GitHub and add the secrets/variables listed above.
 3. Import the GitHub repo into Vercel. `vercel.json` uses `npm run build:vercel` and serves the static `public` directory.
 4. Set `REPORT_PUBLIC_BASE_URL` to your Vercel report path, for example `https://your-app.vercel.app/reports`.
-5. GitHub Actions runs every day at 10:00 Asia/Shanghai. It fetches tweets, runs the LLM classifier, generates Markdown + HTML, uploads structured data to Supabase, commits the `public/reports` archive, and triggers Vercel redeploy through the GitHub push.
+5. GitHub Actions runs every day at 15:10 Asia/Shanghai. It fetches tweets, runs the LLM classifier, generates Markdown + HTML, uploads structured data to Supabase, commits the `public/reports` archive, and triggers Vercel redeploy through the GitHub push.
 
 The daily Lark card includes the public HTML link when `REPORT_PUBLIC_BASE_URL` is configured.
 
@@ -124,7 +124,7 @@ fintwit-tracker-node/
 │   └── upload-report-to-supabase.js  # writes report payloads to Supabase REST API
 ├── supabase/schema.sql               # cloud storage schema
 ├── vercel.json                       # static Vercel build config
-└── .github/workflows/daily.yml       # 02:00 UTC cron
+└── .github/workflows/daily.yml       # 07:10 UTC cron
 ```
 
 ## Tech Stack
