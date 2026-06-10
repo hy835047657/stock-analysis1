@@ -112,7 +112,7 @@ export async function fetchAll() {
     }
 
     await saveJson(outPath, filtered);
-    summary[h] = {
+    const entry = {
       count: filtered.length,
       path: outPath,
       window_hours: win,
@@ -120,7 +120,7 @@ export async function fetchAll() {
     };
     const tag = win > defaultWindow ? ' [WEEKLY]' : '';
     logger.info(`[${h}]${tag} kept ${filtered.length}/${raw.length} tweets in last ${win}h`);
-    return [h, summary];
+    return [h, entry];
   });
   const summary = Object.fromEntries(rows);
   await saveJson(path.join(dateDir, '_summary.json'), summary);
