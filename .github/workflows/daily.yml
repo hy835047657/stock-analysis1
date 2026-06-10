@@ -40,10 +40,32 @@ jobs:
           key: runtime-cache-${{ runner.os }}-${{ github.run_id }}
           restore-keys: |
             runtime-cache-${{ runner.os }}-
+      - name: Preflight configuration
+        if: steps.existing_report.outputs.skip != 'true'
+        env:
+          TWEX_API_KEY: ${{ secrets.TWEX_API_KEY || secrets.WEX_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LARK_WEBHOOK: ${{ secrets.LARK_WEBHOOK }}
+          REPORT_PUBLIC_BASE_URL: ${{ vars.REPORT_PUBLIC_BASE_URL }}
+        run: |
+          missing=0
+          for name in TWEX_API_KEY OPENAI_API_KEY; do
+            if [ -z "${!name}" ]; then
+              echo "::error::$name is not configured. Add it in Settings > Secrets and variables > Actions."
+              missing=1
+            fi
+          done
+          if [ -z "$LARK_WEBHOOK" ]; then
+            echo "::warning::LARK_WEBHOOK is not configured, so the report will not be pushed to Lark."
+          fi
+          if [ -z "$REPORT_PUBLIC_BASE_URL" ]; then
+            echo "::warning::REPORT_PUBLIC_BASE_URL is not configured, so the pushed link may be missing."
+          fi
+          exit "$missing"
       - name: Run pipeline
         if: steps.existing_report.outputs.skip != 'true'
         env:
-          TWEX_API_KEY: ${{ secrets.TWEX_API_KEY }}
+          TWEX_API_KEY: ${{ secrets.TWEX_API_KEY || secrets.WEX_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
           OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
