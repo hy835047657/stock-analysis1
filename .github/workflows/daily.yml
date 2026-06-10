@@ -2,6 +2,8 @@ name: daily-fintwit
 on:
   schedule:
     - cron: '30 1 * * *'  # 01:30 UTC = 09:30 Asia/Shanghai
+    - cron: '45 1 * * *'  # backup: 09:45 Asia/Shanghai
+    - cron: '0 2 * * *'   # backup: 10:00 Asia/Shanghai
   workflow_dispatch:
 
 jobs:
@@ -17,7 +19,21 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm test
+      - name: Check existing daily report
+        id: existing_report
+        run: |
+          stamp=$(date -u +%Y%m%d)
+          report="public/reports/daily_${stamp}.html"
+          echo "report=$report" >> "$GITHUB_OUTPUT"
+          if [ -f "$report" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Report already exists: $report"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "Report does not exist yet: $report"
+          fi
       - name: Restore runtime cache
+        if: steps.existing_report.outputs.skip != 'true'
         uses: actions/cache/restore@v4
         with:
           path: data/cache
@@ -25,6 +41,7 @@ jobs:
           restore-keys: |
             runtime-cache-${{ runner.os }}-
       - name: Run pipeline
+        if: steps.existing_report.outputs.skip != 'true'
         env:
           TWEX_API_KEY: ${{ secrets.TWEX_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -44,12 +61,13 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: npm run ci:daily
       - name: Save runtime cache
-        if: always()
+        if: always() && steps.existing_report.outputs.skip != 'true'
         uses: actions/cache/save@v4
         with:
           path: data/cache
           key: runtime-cache-${{ runner.os }}-${{ github.run_id }}
       - name: Commit public report
+        if: steps.existing_report.outputs.skip != 'true'
         run: |
           git config user.name  github-actions
           git config user.email github-actions@github.com
@@ -57,12 +75,14 @@ jobs:
           git commit -m "daily report $(date -u +%Y-%m-%d)" || true
           git push || true
       - name: Wait for public report
+        if: steps.existing_report.outputs.skip != 'true'
         env:
           REPORT_PUBLIC_BASE_URL: ${{ vars.REPORT_PUBLIC_BASE_URL }}
           PUBLIC_REPORT_WAIT_SECONDS: ${{ vars.PUBLIC_REPORT_WAIT_SECONDS || '90' }}
           PUBLIC_REPORT_WAIT_INTERVAL_SECONDS: ${{ vars.PUBLIC_REPORT_WAIT_INTERVAL_SECONDS || '5' }}
         run: npm run report:wait-public
       - name: Push notification
+        if: steps.existing_report.outputs.skip != 'true'
         env:
           LARK_WEBHOOK: ${{ secrets.LARK_WEBHOOK }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
