@@ -102,6 +102,12 @@
         "stance": "LONG",
         "conviction": 5,
         "url": "https://x.com/aleabitoreddit/status/2063465386960736396"
+      },
+      {
+        "date": "2026-06-10",
+        "stance": "LONG",
+        "conviction": 5,
+        "url": "https://x.com/aleabitoreddit/status/2064246556690469123"
       }
     ],
     "SOI": [
@@ -128,5 +134,6 @@
     ]
   },
   "HKuppy": {},
-  "altcap": {}
+  "altcap": {},
+  "xiaomustock": {}
 }
