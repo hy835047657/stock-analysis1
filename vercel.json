@@ -1,4 +1,10 @@
 {
   "buildCommand": "npm run build:vercel",
-  "outputDirectory": "public"
+  "outputDirectory": "public",
+  "crons": [
+    {
+      "path": "/api/trigger-daily",
+      "schedule": "30 1 * * *"
+    }
+  ]
 }
