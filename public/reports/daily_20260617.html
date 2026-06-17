@@ -1,0 +1,1526 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FinTwit 每日简报 - 2026-06-17</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --panel-soft: #f0f4f8;
+      --text: #17202a;
+      --muted: #657282;
+      --line: #d9e0e8;
+      --green: #147d4f;
+      --red: #b42318;
+      --amber: #9a6700;
+      --blue: #1f5fbf;
+      --chip: #e8edf4;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 14px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 18px 56px;
+    }
+    header {
+      padding: 18px 0 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 3px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      white-space: nowrap;
+    }
+    .disclaimer {
+      margin-top: 14px;
+      max-width: 860px;
+      color: var(--muted);
+    }
+
+    section {
+      margin-top: 22px;
+    }
+    h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .span-4 { grid-column: span 4; }
+    .span-6 { grid-column: span 6; }
+    .span-12 { grid-column: span 12; }
+    .empty {
+      color: var(--muted);
+      padding: 10px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      color: var(--muted);
+      background: var(--panel-soft);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    tr:last-child td { border-bottom: 0; }
+    .num { text-align: right; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 1px 7px;
+      border-radius: 999px;
+      background: var(--chip);
+      color: #2f3b49;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .tag.long { color: var(--green); background: #e6f4ec; }
+    .tag.short, .tag.risk { color: var(--red); background: #fbeae8; }
+    .tag.neutral { color: #4d5966; background: #edf1f5; }
+    .tag.topic { color: #174ea6; background: #e8f0fe; }
+    .tag.warn { color: var(--amber); background: #fff3cd; }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .list li {
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+    .small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .summary-list {
+      margin: 8px 0 12px;
+      padding-left: 18px;
+      color: #2f3b49;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+    details + details { margin-top: 10px; }
+    summary {
+      cursor: pointer;
+      padding: 12px 14px;
+      background: var(--panel-soft);
+      font-weight: 700;
+    }
+    .details-body { padding: 12px 14px 14px; }
+    .tweet-table { font-size: 13px; }
+    .tweet-text { min-width: 260px; }
+    footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    @media (max-width: 860px) {
+      .page { padding: 20px 12px 42px; }
+      h1 { font-size: 24px; }
+      .span-4, .span-6 { grid-column: span 12; }
+      table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .tweet-text {
+        min-width: 420px;
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>FinTwit 每日简报</h1>
+      <div class="meta">
+        <span class="pill">2026-06-17</span>
+        <span class="pill">常规层 56 小时</span>
+        <span class="pill">9 位博主</span>
+        <span class="pill">104 条常规窗口推文</span>
+        
+      </div>
+      <div class="disclaimer">本报告仅聚合 X 平台公开博主观点，用于信息整理与线索追踪。
+内容不构成任何投资建议，请务必独立核验并自行判断风险。
+</div>
+    </header>
+
+    <section>
+      <h2>今日热点</h2>
+      
+      <table>
+        <thead><tr><th>主题</th><th class="num">提及次数</th><th>相关博主</th></tr></thead>
+        <tbody>
+          
+          <tr>
+            <td><span class="tag topic">AI_SEMI</span></td>
+            <td class="num">21</td>
+            <td>Beth_Kindig, KobeissiLetter, aleabitoreddit, dylan522p, xiaomustock</td>
+          </tr>
+          
+          <tr>
+            <td><span class="tag topic">MACRO</span></td>
+            <td class="num">13</td>
+            <td>KobeissiLetter, aleabitoreddit, xiaomustock</td>
+          </tr>
+          
+          <tr>
+            <td><span class="tag topic">PHOTONICS</span></td>
+            <td class="num">12</td>
+            <td>aleabitoreddit, dylan522p</td>
+          </tr>
+          
+          <tr>
+            <td><span class="tag topic">ENERGY</span></td>
+            <td class="num">8</td>
+            <td>HKuppy, KobeissiLetter</td>
+          </tr>
+          
+          <tr>
+            <td><span class="tag topic">CRYPTO</span></td>
+            <td class="num">1</td>
+            <td>KobeissiLetter</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+    </section>
+
+    <section>
+      <h2>多博主共识</h2>
+      <div class="grid">
+        <div class="card span-4">
+          <h3>做多共识</h3>
+          <div class="empty">今日暂无做多共识。</div>
+        </div>
+        <div class="card span-4">
+          <h3>做空共识</h3>
+          <div class="empty">今日暂无做空共识。</div>
+        </div>
+        <div class="card span-4">
+          <h3>分歧标的</h3>
+          <div class="empty">暂无明显分歧。</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>仓位/观点变化</h2>
+      <div class="grid">
+        
+        <div class="card span-6">
+          <h3>@Beth_Kindig</h3>
+          
+          
+          <div class="empty">暂无新的仓位信号。</div>
+        </div>
+        
+        <div class="card span-6">
+          <h3>@aleabitoreddit</h3>
+          
+          
+          <div class="empty">暂无新的仓位信号。</div>
+        </div>
+        
+        <div class="card span-6">
+          <h3>@HKuppy</h3>
+          
+          
+          <div class="empty">暂无新的仓位信号。</div>
+        </div>
+        
+        <div class="card span-6">
+          <h3>@altcap</h3>
+          
+          
+          <div class="empty">暂无新的仓位信号。</div>
+        </div>
+        
+        <div class="card span-6">
+          <h3>@xiaomustock</h3>
+          
+          
+          <div class="empty">暂无新的仓位信号。</div>
+        </div>
+        
+      </div>
+    </section>
+
+    <section>
+      <h2>风险雷达</h2>
+      <div class="empty">今日暂无 ticker 绑定风险提醒。</div>
+      
+      <h3>泛风险讨论</h3>
+      <ul class="list">
+        
+        <li><a href="https://x.com/aleabitoreddit/status/2066868456457416871">@aleabitoreddit</a>：认为AI是颠覆性技术，局部存在泡沫，上游半导体盈利支撑强，今年行情至少还能延续</li>
+        
+        <li><a href="https://x.com/HKuppy/status/2066339319103521261">@HKuppy</a>：@contang_o @whirlybard @Pembrokestcap 你不知道霍尔木兹会不会再次关闭，所以得尽快补货</li>
+        
+        <li><a href="https://x.com/KobeissiLetter/status/2066986237055922530">@KobeissiLetter</a>：AI革命需大量资金：摩根大通预计2026年美股净股权发行约2000亿美元，2027年同比增500%至1.2万亿美元，为90年代末来最高。</li>
+        
+        <li><a href="https://x.com/KobeissiLetter/status/2066958882212020539">@KobeissiLetter</a>：散户扎堆买入SpaceX：近两个交易日散户买SPCX的金额几乎等于上周全部美股个股买入总和，风险偏好未见降温。</li>
+        
+        <li><a href="https://x.com/KobeissiLetter/status/2066589483185709376">@KobeissiLetter</a>：全球资本市场异常火热，今年以来企业募资达4.7万亿美元创纪录，主要由科技公司AI相关融资需求推动</li>
+        
+      </ul>
+      
+    </section>
+
+    <section>
+      <h2>回测快照</h2>
+      <table>
+        <thead><tr><th>博主</th><th class="num">样本数</th><th class="num">30 日胜率</th></tr></thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>按博主汇总与详情</h2>
+      
+      
+      <details>
+        <summary>@dylan522p（L1_industry · 11 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>台媒称Vera Rubin将采用800V HVDC，Q3小批量出货</li><li>SemiAnalysis宣布成立顶尖芯片拆解实验室，目标行业第一</li><li>博主感慨相关事件进展速度快</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2066301552126754897">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">534487</td>
+                <td class="tweet-text">台湾媒体消息：薇拉·鲁宾将采用800V高压直流供电，第三季度开始小批量出货。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2066270360278794588">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">256655</td>
+                <td class="tweet-text">我很高兴宣布SemiAnalysis拆解工程评估实验室（STEEL）成立，我们在俄勒冈州斥资数千万美元建了顶尖芯片拆解实验室，已实现营收，目标成为行业第一。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2066303084083699895">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">69160</td>
+                <td class="tweet-text">哦，这速度可真快。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2066330517172056210">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">58489</td>
+                <td class="tweet-text">@SemiAnalysis 写得好的时候我会夸，近月我多次称赞其内容，他们声誉高市场影响大，但也会完全出错，比如最近这篇。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2066238537180352741">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">18012</td>
+                <td class="tweet-text">我同意。我大学胖了40磅，没人敢说我胖。你得自己评估，因为朋友绝不会说实话。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2066400420722065485">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">3568</td>
+                <td class="tweet-text">@dylan522p 嗨迪伦，我看到的是透射电镜吗？这能为逆向工程获取重要数据。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2066270741402902926">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>-</td>
+                <td class="num">2203</td>
+                <td class="tweet-text">@dylan522p 我是业余光学显微镜爱好者，看到第三排最后一张图就认出是奥林巴斯的光学设备，很棒。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2066308407745740924">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">2092</td>
+                <td class="tweet-text">@dylan522p 不错，但作为拆解信息受众，我想看到：实验室工具能力清单、团队经验概述、跨领域分析能力证明。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2066282229316321424">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">2059</td>
+                <td class="tweet-text">@dylan522p 我什么时候能参观你们的实验室啊，你们也太厉害了。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2066272032158106057">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">1698</td>
+                <td class="tweet-text">@dylan522p 为什么选择俄勒冈？</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2066272429534568474">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">1085</td>
+                <td class="tweet-text">@dylan522p 祝贺团队，尤其要恭喜安德鲁出色完成了工作。</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@Beth_Kindig（L1_industry · 6 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>据报道Alphabet选定英特尔2028年生产300万颗TPU</li><li>瑞银预测英伟达、AMD新款芯片2026年出货及部署节奏</li><li>英伟达与SK电讯计划在韩建GW级AI云，2027年首个AI工厂上线</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2066232148357431784">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">50457</td>
+                <td class="tweet-text">据The Information报道，经数月工艺测试，Alphabet已选定英特尔2028年生产300万颗TPU。$GOOG $INTC $AVGO</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2066698101293801644">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">29177</td>
+                <td class="tweet-text">瑞银评英伟达和AMD：英伟达Blackwell将主导2026年出货，AMD Helios整机部署大概率延至2026年底</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2066266247658897683">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">23647</td>
+                <td class="tweet-text">英伟达与SK电讯计划在韩国使用英伟达GPU建设GW级AI云，首个AI工厂预计2027年上线。$NVDA</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2066944060141486102">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">21550</td>
+                <td class="tweet-text">据悉SK海力士计划最快8月在纳斯达克发行ADR，预计募资100至140亿美元，相关个股：$MU $NVDA $AMD</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2066554577252425969">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">17224</td>
+                <td class="tweet-text">AMD投资的数据中心初创TensorWave融资3.5亿美元，估值15.5亿美元，为去年近4倍</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2066924844931826057">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">14763</td>
+                <td class="tweet-text">摩根士丹利预测，今年全球AI相关发债规模将翻倍至5700亿美元，超大规模云厂商寻求另类融资满足资本支出需求，相关个股：$MSFT $AMZN $GOOG $ORCL</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@aleabitoreddit（L2_single_stock · 30 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>英伟达谷歌提前推进800V DC，多家供应链厂商受益</li><li>提及$SPCX市值2.5万亿，吐槽美国投资者不看估值炒概念</li><li>分享欧洲核心多头持仓，多为光子领域优质标的</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066331049605627951">2026-06-15</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">873460</td>
+                <td class="tweet-text">英伟达、谷歌提前至2026年Q3小批量出货800V DC，台厂、$VRT等多家供应链厂商将受益。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066676986324648239">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">708733</td>
+                <td class="tweet-text">显然$SPCX现在市值2.5万亿美元了。我之前就说美国人不看估值啥未来概念都买，美国啥都涨疯了。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066535221554733278">2026-06-15</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>$SIVE $SOI $XFAB</td>
+                <td class="num">669622</td>
+                <td class="tweet-text">回顾我的欧洲核心多头持仓：$SIVE、$SOI等7只标的，多属光子赛道，具备垄断或技术优势，仍看好后续表现。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066791570569916832">2026-06-16</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">665689</td>
+                <td class="tweet-text">我此前就说美光会是下一个英伟达，现其市值达1.23万亿美元，存储赛道预测正顺利兑现</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066360345774764496">2026-06-15</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">646177</td>
+                <td class="tweet-text">当空头太蠢，特朗普中期选举前托市，多板块利好，加息概率大跌，原油下跌，欧股美股都将上行。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066498742942159288">2026-06-15</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>$SIVE</td>
+                <td class="num">607977</td>
+                <td class="tweet-text">$SIVE资质稀缺，是英伟达等巨头核心供应商，估值较低，期待今日股东大会确认其纳斯达克上市时间表。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066707573139763211">2026-06-16</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>$SIVE</td>
+                <td class="num">561208</td>
+                <td class="tweet-text">新报告称AMD正争抢CW激光供应避免产能被英伟达限制，SIVE、AAOI为受益标的，我去年就预判到该趋势。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066554149622399421">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">550002</td>
+                <td class="tweet-text">说实话，我浪费了5分钟思考这个问题到底是愚蠢还是天才。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066404298163154976">2026-06-15</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">545948</td>
+                <td class="tweet-text">我之前就说Foosung（093370）是中日出口管制瓶颈的大赢家，这类标的单日涨21%，远高于7.5%的指数回报。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066868456457416871">2026-06-16</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">532810</td>
+                <td class="tweet-text">认为AI是颠覆性技术，局部存在泡沫，上游半导体盈利支撑强，今年行情至少还能延续</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066435132471513578">2026-06-15</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>-</td>
+                <td class="num">456800</td>
+                <td class="tweet-text">之前给你们推荐的$IQE赚了钱的话，不用谢我。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066521694836330618">2026-06-15</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>-</td>
+                <td class="num">435311</td>
+                <td class="tweet-text">我早前的新云、光子、存储研究已应验，提示$IREN因60亿美元持续抛压走势停滞，持仓者仍不肯承认。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066421816793714938">2026-06-15</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>-</td>
+                <td class="num">404420</td>
+                <td class="tweet-text">哇，$IQE和$TSEM签署多年磷化铟外延片协议。我此前12美元时就提过IQE对西方光学供应链的重要性，如今再签关键协议。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066340661633372452">2026-06-15</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>$SIVE</td>
+                <td class="num">400078</td>
+                <td class="tweet-text">今日报道中国放宽磷化铟衬底出口，将缓解光子行业量产瓶颈，我持仓的光学标的及台厂均将受益。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066785056031670657">2026-06-16</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>$SIVE</td>
+                <td class="num">395101</td>
+                <td class="tweet-text">回顾2025年我对AAOI、LITE、AXTI的预判均兑现，当前市值30亿的光股长SIVE似曾相识。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066823176785457323">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">360948</td>
+                <td class="tweet-text">我分享AXTI投资逻辑前做了充分调研却遭辱骂，后续路透证实磷化铟衬底可能卡AI产能</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066838650193949091">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">291835</td>
+                <td class="tweet-text">$SPCX以600亿美元收购Cursor，我没想到值这么多，马斯克肯定有规划，此前收购推特收益很高</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066700296693424329">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">289108</td>
+                <td class="tweet-text">我很好奇金融类X平台的用户财富分布（匿名），此前还没有相关研究。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2067033934194696469">2026-06-16</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>$SIVE</td>
+                <td class="num">166201</td>
+                <td class="tweet-text">瑞穗研究：CPO和800V直流无延期，因英伟达需求上调光引擎预期，认为近期CPO相关抛售十分愚蠢</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066360985791631803">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>$SIVE</td>
+                <td class="num">28161</td>
+                <td class="tweet-text">Sivers半导体$SIVE周五报价150瑞典克朗（约合15美元），记下来。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066340921566962044">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">23346</td>
+                <td class="tweet-text">@aleabitoreddit POET还有投资机会吗？</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066499427494515193">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>-</td>
+                <td class="num">20471</td>
+                <td class="tweet-text">是否担心他们在大规模量产时无法保持同等的产品质量？</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066792166798639293">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">18741</td>
+                <td class="tweet-text">@aleabitoreddit 感谢大佬/卡通角色的推荐，致敬🫡</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066500335732961454">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>$SIVE</td>
+                <td class="num">16325</td>
+                <td class="tweet-text">$SIVE和苹果的关联传闻进展如何？如果属实对其有何影响？大家似乎都忘了这些传言了。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066919948212195832">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">14294</td>
+                <td class="tweet-text">@The_AI_Investor 多谢你拿傻回复引我，我早前就预测对美光毛利率，之后还有多次DRAM/NAND涨价</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066823592076267620">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">12819</td>
+                <td class="tweet-text">@aleabitoreddit 前辈别理黑子，你的分享帮了很多人，继续加油！</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066786611833041027">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">10347</td>
+                <td class="tweet-text">你这些预判太厉害了，你对台湾相关标的怎么看？Msscorps的重点布局是什么？</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066785223547720172">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">8172</td>
+                <td class="tweet-text">你打算什么时候建仓新的美股标的？</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066785456579379218">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">7133</td>
+                <td class="tweet-text">AXT最牛逼！但是还没上涨或者已经下跌的标的有哪些呢？</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2066687870791024821">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">6815</td>
+                <td class="tweet-text">如果我看不到霓虹灯的后续照片，我会感到失望的。</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@HKuppy（L2_single_stock · 7 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>认为大众未意识到今年剩余时间全球原油库存将大幅下降</li><li>发布一句含义模糊的调侃内容</li><li>调侃有3000亿美元的人能买得起更大的旗子焚烧</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2066581478855561308">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">54061</td>
+                <td class="tweet-text">我真的觉得大家还没意识到今年剩下的时间里全球原油库存的下降幅度会有多大</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2066288448105750858">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">39587</td>
+                <td class="tweet-text">它太开放了，反而等同于封闭…🤣</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2066982083914862597">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">24748</td>
+                <td class="tweet-text">都有3000亿美元了，你会觉得他买得起更大的旗子来烧…🤷‍♂️</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2067041817376219505">2026-06-17</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">10920</td>
+                <td class="tweet-text">丹麦就差几个乐高视频就能拿到3000亿美元的入账了…🤣🤣</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2066680120727798019">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">7794</td>
+                <td class="tweet-text">我和金融推特上的其他人一样对伊朗“协议”感到反感，看过200条相关帖子，没独特内容补充就不多说了</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2066339319103521261">2026-06-15</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">1535</td>
+                <td class="tweet-text">@contang_o @whirlybard @Pembrokestcap 你不知道霍尔木兹会不会再次关闭，所以得尽快补货</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2066505693209768172">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">1400</td>
+                <td class="tweet-text">@JoshYoung 实际上我觉得索马里海盗已经进入大家的讨论话题了…🤣</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@altcap（L3_institutional · 4 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>称将与SpaceX合作开发实用AI，无明确交易观点</li><li>赞扬美国创业者敢冒险追梦，称该特质是美国代际传承的DNA</li><li>感谢他人讨论心脏健康，称相关讨论促使自己做检查规避风险</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2066874098001883538">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">1701787</td>
+                <td class="tweet-text">有诸多合作事宜待推进，很高兴能与@SpaceX携手打造实用人工智能。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2066522423508554196">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">53851</td>
+                <td class="tweet-text">这个国家的创业者足够自由勇敢，敢迈出第一步，拥抱风险追逐梦想，不受打压梦想的政府强制干预，这就是美国代代相传的黄金DNA。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2066588886038651178">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">2486</td>
+                <td class="tweet-text">诚挚感谢@altcap和@chamath公开讨论心脏健康与预防性筛查，他们的讨论促使我做了冠脉CT，医生称该检查可能帮我规避了后续重病风险。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2066392596931342369">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">2315</td>
+                <td class="tweet-text">@ufc 250的夜晚极具历史性且很精彩，虽前所未有但很有美国特色，我还展示了特朗普账户的新宣传视频。</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@xiaomustock（L2_single_stock · 5 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>转述美国及盟友将向伊朗赔付3000亿美元消息</li><li>称存储是AI革命终极正解，远胜其他个股，建议大仓位持有</li><li>看好DRAM、海力士、SMH等半导体相关投资标的</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2066375814145331574">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">242168</td>
+                <td class="tweet-text">美国建国以来签署了第一份丧权辱国条约，美国与盟友向伊朗赔款3000亿美元</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2066832061617545586">2026-06-16</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">127728</td>
+                <td class="tweet-text">存储是AI革命的终极正解，其他股票与之相比差距极大，一定要大仓位持有存储，把握住AI核心机遇。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2066387018246971786">2026-06-15</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">110349</td>
+                <td class="tweet-text">要去正规市场投资，看到朋友圈分享：东北冬冷等开春不如飞三亚，DRAM、SMH、QQQ、海力士都是好标的</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2066832888847630555">2026-06-16</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">94372</td>
+                <td class="tweet-text">我2月选的AI时代存储唯一正解，3月受特朗普相关事件影响大跌，持有至今已翻倍，多数恐惧源于想象，时间会证明一切。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2066784093954793656">2026-06-16</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">48571</td>
+                <td class="tweet-text">SPCX这波涨得太爽了，马斯克简直是银河系的耶稣转世，人类文明的救世主，脑洞清奇的天才。</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@KobeissiLetter（L5_market_tape · 41 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>SpaceX市值达2.5万亿美元，距超越亚马逊仅差5%涨幅</li><li>巴基斯坦总理宣布美伊达成和平协议，将永久停火</li><li>披露美伊和平协议7项预期条款，6月19日签最终协议</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066619838806589929">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">4211338</td>
+                <td class="tweet-text">突发：$SPCX市值达2.5万亿美元，为全球第六大上市公司，距离超越亚马逊成为第五仅差5%的涨幅</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066270019349258676">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">1892197</td>
+                <td class="tweet-text">突发：巴基斯坦总理宣布美伊正式达成和平协议，6月19日在瑞士签署，双方将永久停止所有战线军事行动。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066285395365470617">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">1803020</td>
+                <td class="tweet-text">美伊和平协议预期条款含延长停火、重开霍尔木兹海峡、讨论解除制裁等，6月19日将在瑞士签署最终协议。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066279133408350636">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">1332613</td>
+                <td class="tweet-text">据法尔斯新闻，伊朗原本准备袭击以色列，在特朗普做出多项让步后，伊朗放弃袭击，将很快发布和平协议声明。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066884566975918236">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">1046447</td>
+                <td class="tweet-text">突发：SpaceX（$SPCX）正式超越微软，成为全球第四大上市公司，当前市值2.95万亿美元</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066688275754946810">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">1042505</td>
+                <td class="tweet-text">$SPCX盘后价超220美元，市值近2.9万亿美元距微软不足千亿，较IPO价涨63%，与特斯拉总市值超苹果比肩谷歌，IPO募资破纪录</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066684276909781267">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">925685</td>
+                <td class="tweet-text">突发：$SPCX盘后暴涨9%，市值达2.7万亿美元，正式超越亚马逊成为全球第五大上市公司</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066270581020881003">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">866277</td>
+                <td class="tweet-text">突发：巴基斯坦总理发布声明，宣布美伊已达成和平协议，双方终止所有军事行动，6月19日在瑞士签署。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066279969148305724">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">856926</td>
+                <td class="tweet-text">突发：巴基斯坦宣布美伊达成和平协议后，美国油价暴跌，跌破81美元/桶。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066272639065141527">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">731267</td>
+                <td class="tweet-text">突发：特朗普总统称与伊朗的协议现已完成，特此全面授权霍尔木兹海峡免费通行，让石油流动。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066280513116213489">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">625710</td>
+                <td class="tweet-text">突发：巴基斯坦宣布美伊达成和平协议后，美股期货大涨，原油大跌，黄金上涨，协议将于6月19日签署。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066914695274012857">2026-06-16</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">601177</td>
+                <td class="tweet-text">突发：据WSJ报道，停战协议下美国将允许伊朗立即开售石油及燃油，覆盖配套服务，油价闻讯大跌。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066724018166607935">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">563854</td>
+                <td class="tweet-text">突发：受通胀上升影响，日本央行正式将利率上调至1995年以来最高水平</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066550773941416137">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">508032</td>
+                <td class="tweet-text">突发：SpaceX股票$SPCX上市第二日涨幅扩至超10%，当前市值超2.3万亿美元</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066304011314029024">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">488727</td>
+                <td class="tweet-text">巴基斯坦在X上宣布伊朗和平协议，获美方、伊媒确认及卡塔尔支持，X已成全球重大决策核心讨论发布场所。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066611787978441098">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">422172</td>
+                <td class="tweet-text">突发：受美伊协议公布消息影响，标普500收涨1.7%，总市值合计增加1.2万亿美元</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066287098806604185">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">372438</td>
+                <td class="tweet-text">突发：特朗普总统证实，美国与伊朗将于6月19日正式签署和平协议。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066843120273133768">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">369358</td>
+                <td class="tweet-text">突发：吉姆·克莱默表示，SpaceX（$SPCX）已成“meme股”，不愿看到它几轮隔夜涨势就达英伟达规模</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066837236910301580">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">365789</td>
+                <td class="tweet-text">突发：美国油价跌破79美元/桶，触及3月10日以来的最低水平</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066695001916965195">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">324479</td>
+                <td class="tweet-text">今晚$SPCX股价上涨令马斯克净资产超1.3万亿美元，其身家超全球绝大多数上市公司市值，SpaceX加特斯拉总市值已超苹果</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066493334588145797">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">292654</td>
+                <td class="tweet-text">突发：美伊宣布和平协议后，标普500今日市值增9000亿美元，距历史新高仅1.2%</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066278333898232163">2026-06-14</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">269184</td>
+                <td class="tweet-text">突发：伊朗法尔斯新闻称，最高国家安全委员会关于停火协议的官方声明将在数分钟内发布。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066243381651513539">2026-06-14</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">227109</td>
+                <td class="tweet-text">5月美国想工作但未进入劳动力市场的人口增7.6万至620万，为2021年7月来第三高，已超2008危机前水平。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066931775096447048">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">213875</td>
+                <td class="tweet-text">突发：受美伊协议预计包含制裁解除消息影响，美油日内跌幅扩至7%，跌破76美元/桶。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066534113213907176">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">207660</td>
+                <td class="tweet-text">突发：SpaceX IPO因承销商行使绿鞋期权，融资857亿美元，远超沙特阿美纪录</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066223679617237131">2026-06-14</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">201787</td>
+                <td class="tweet-text">突发：美国5月成屋挂牌价中位数同比降2.4%至42.95万美元，为2017年以来最大跌幅，楼市回调加速。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066856226676174863">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">194701</td>
+                <td class="tweet-text">突发：因市场计入美伊和平协议预期，美国油价跌破78美元/桶</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066517036788842578">2026-06-15</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">168579</td>
+                <td class="tweet-text">伊朗协议下黄金会逼空吗？上周黄金基金流出23亿美元，连续四周净流出，逼空条件成熟</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066671699613843880">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">160842</td>
+                <td class="tweet-text">美加家庭、养老金等机构股票配置占金融资产近60%，接近历史最高，超过过往熊市前峰值，远高于其他地区</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066874261256425796">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">150872</td>
+                <td class="tweet-text">美国股市正刷新金融史纪录：美股前十大公司总市值25.3万亿美元，超过中国GDP，占美GDP80%，史无前例</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066958882212020539">2026-06-16</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">142417</td>
+                <td class="tweet-text">散户扎堆买入SpaceX：近两个交易日散户买SPCX的金额几乎等于上周全部美股个股买入总和，风险偏好未见降温。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066267939800863097">2026-06-14</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">135456</td>
+                <td class="tweet-text">美国医保成本涨势无放缓，2026年人均员工福利成本同比涨6.7%，创15年新高，约66%大企业拟2027年涨员工保费。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066589483185709376">2026-06-15</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">129460</td>
+                <td class="tweet-text">全球资本市场异常火热，今年以来企业募资达4.7万亿美元创纪录，主要由科技公司AI相关融资需求推动</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066986237055922530">2026-06-16</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">115097</td>
+                <td class="tweet-text">AI革命需大量资金：摩根大通预计2026年美股净股权发行约2000亿美元，2027年同比增500%至1.2万亿美元，为90年代末来最高。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066649144597299463">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">111395</td>
+                <td class="tweet-text">美国消费者通胀担忧加剧，38%认为未来一年通胀风险高于失业，占比创2025年3月以来新高，通胀仍是家庭主要问题</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066899435527835954">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>-</td>
+                <td class="num">110815</td>
+                <td class="tweet-text">SpaceX推动代币化资产交易激增：近30天链上代币化股票交易额43亿美元，累计转账额首次突破200亿美元。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066564367639097812">2026-06-15</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">99202</td>
+                <td class="tweet-text">赤字支出危机全面爆发。2026财年前8月美赤字达1.25万亿美元，净利息支出创纪录，无长期规划</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066226665680973846">2026-06-14</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">90226</td>
+                <td class="tweet-text">6月15日当周的Kobeissi Letter及周度图表已发布，可通过链接查看或免费注册获取。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2066945732590944436">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">89624</td>
+                <td class="tweet-text">科技资本支出暴增：发达市场科技公司资本支出占营收比达11.5%创纪录，AI建设正推高各行业投资支出。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2067007101654749652">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">86189</td>
+                <td class="tweet-text">美国经济现罕见现象：失业率与整体CPI差值缩至0.1个百分点，为2022年来最低，历史上该情况后常出现美联储加息。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2067054183598231951">2026-06-17</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">37569</td>
+                <td class="tweet-text">各国央行极度看好黄金：世界黄金协会对74家央行的调查显示，45%计划未来12个月购金，占比创历史新高，央行正逢低买金。</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@muddywatersre（L6_risk · 7 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>嘲讽低风险收益比的赌博式交易，质疑其是否会甩锅高盛</li><li>浑水称与多数卖方一样对SOFI存疑，多方对其追捧狂热</li><li>浑水做空ENSG，称其违规经营将削利降速，还面临巨额罚款</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2066622372199956650">2026-06-15</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">62868</td>
+                <td class="tweet-text">拿100万美元下注仅赚8.6万，让我想起见过的最差基金经理/做空者，不知这赌徒会不会也怪高盛</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2066925321832870200">2026-06-16</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">24608</td>
+                <td class="tweet-text">《福布斯》今日发布了一篇关于$SOFI的优质深度报道。我们浑水很少见到这么多卖方和我们一样对某只股票存疑，讽刺的是多方对其追捧近乎宗教狂热。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2065127144468971858">2026-06-11</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">24528</td>
+                <td class="tweet-text">浑水做空$ENSG，认为其约20%护理机构违规租牌照欺瞒监管，合规将使2027年EBIT较共识低35%，增速大降，或涉数十亿美元罚款，后附报告链接</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2064726658867679376">2026-06-10</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">20176</td>
+                <td class="tweet-text">（约9:30）做空者对一家初级矿业公司发起委托代理权争夺战。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2065375039713607869">2026-06-12</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">20020</td>
+                <td class="tweet-text">💯（表示满分、认可含义的表情符号）</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2066896234372292843">2026-06-16</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">19599</td>
+                <td class="tweet-text">谢谢，但我只是在重复@profplum99迈克·格林所做的研究工作。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2066495632710185359">2026-06-15</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">6403</td>
+                <td class="tweet-text">大家都在说卡勒姆·特纳演邦德，我觉得浑水该推举Freddy当下一任007</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      
+    </section>
+
+    <section>
+      <h2>今日高互动推文</h2>
+      <ul class="list">
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2066619838806589929">@KobeissiLetter</a></strong> <span class="small">4211338 次浏览 · 观点强度 4</span><br>突发：$SPCX市值达2.5万亿美元，为全球第六大上市公司，距离超越亚马逊成为第五仅差5%的涨幅</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2066270019349258676">@KobeissiLetter</a></strong> <span class="small">1892197 次浏览 · 观点强度 4</span><br>突发：巴基斯坦总理宣布美伊正式达成和平协议，6月19日在瑞士签署，双方将永久停止所有战线军事行动。</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2066285395365470617">@KobeissiLetter</a></strong> <span class="small">1803020 次浏览 · 观点强度 4</span><br>美伊和平协议预期条款含延长停火、重开霍尔木兹海峡、讨论解除制裁等，6月19日将在瑞士签署最终协议。</li>
+        
+        <li><strong><a href="https://x.com/altcap/status/2066874098001883538">@altcap</a></strong> <span class="small">1701787 次浏览 · 观点强度 1</span><br>有诸多合作事宜待推进，很高兴能与@SpaceX携手打造实用人工智能。</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2066279133408350636">@KobeissiLetter</a></strong> <span class="small">1332613 次浏览 · 观点强度 4</span><br>据法尔斯新闻，伊朗原本准备袭击以色列，在特朗普做出多项让步后，伊朗放弃袭击，将很快发布和平协议声明。</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2066884566975918236">@KobeissiLetter</a></strong> <span class="small">1046447 次浏览 · 观点强度 5</span><br>突发：SpaceX（$SPCX）正式超越微软，成为全球第四大上市公司，当前市值2.95万亿美元</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2066688275754946810">@KobeissiLetter</a></strong> <span class="small">1042505 次浏览 · 观点强度 4</span><br>$SPCX盘后价超220美元，市值近2.9万亿美元距微软不足千亿，较IPO价涨63%，与特斯拉总市值超苹果比肩谷歌，IPO募资破纪录</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2066684276909781267">@KobeissiLetter</a></strong> <span class="small">925685 次浏览 · 观点强度 4</span><br>突发：$SPCX盘后暴涨9%，市值达2.7万亿美元，正式超越亚马逊成为全球第五大上市公司</li>
+        
+        <li><strong><a href="https://x.com/aleabitoreddit/status/2066331049605627951">@aleabitoreddit</a></strong> <span class="small">873460 次浏览 · 观点强度 4</span><br>英伟达、谷歌提前至2026年Q3小批量出货800V DC，台厂、$VRT等多家供应链厂商将受益。</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2066270581020881003">@KobeissiLetter</a></strong> <span class="small">866277 次浏览 · 观点强度 4</span><br>突发：巴基斯坦总理发布声明，宣布美伊已达成和平协议，双方终止所有军事行动，6月19日在瑞士签署。</li>
+        
+      </ul>
+    </section>
+
+    
+
+    <footer>由 FinTwit Tracker 生成 · 2026-06-17T02:13:13</footer>
+  </main>
+</body>
+</html>
