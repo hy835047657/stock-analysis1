@@ -94,12 +94,6 @@
       {
         "date": "2026-06-08",
         "stance": "LONG",
-        "conviction": 4,
-        "url": "https://x.com/aleabitoreddit/status/2063603368178938193"
-      },
-      {
-        "date": "2026-06-08",
-        "stance": "LONG",
         "conviction": 5,
         "url": "https://x.com/aleabitoreddit/status/2063465386960736396"
       },
@@ -210,6 +204,12 @@
         "stance": "LONG",
         "conviction": 4,
         "url": "https://x.com/aleabitoreddit/status/2071488272245944399"
+      },
+      {
+        "date": "2026-07-02",
+        "stance": "LONG",
+        "conviction": 4,
+        "url": "https://x.com/aleabitoreddit/status/2072152226169331776"
       }
     ],
     "SOI": [
