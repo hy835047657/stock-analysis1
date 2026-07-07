@@ -92,12 +92,6 @@
     ],
     "SIVE": [
       {
-        "date": "2026-06-11",
-        "stance": "LONG",
-        "conviction": 4,
-        "url": "https://x.com/aleabitoreddit/status/2064884912667439129"
-      },
-      {
         "date": "2026-06-12",
         "stance": "LONG",
         "conviction": 4,
@@ -210,6 +204,12 @@
         "stance": "LONG",
         "conviction": 5,
         "url": "https://x.com/aleabitoreddit/status/2072726120706007465"
+      },
+      {
+        "date": "2026-07-07",
+        "stance": "SHORT",
+        "conviction": 4,
+        "url": "https://x.com/aleabitoreddit/status/2074046947434860971"
       }
     ],
     "SOI": [
@@ -322,6 +322,12 @@
         "stance": "LONG",
         "conviction": 3,
         "url": "https://x.com/aleabitoreddit/status/2069373894398743000"
+      },
+      {
+        "date": "2026-07-07",
+        "stance": "LONG",
+        "conviction": 3,
+        "url": "https://x.com/aleabitoreddit/status/2074063175293809150"
       }
     ]
   },
