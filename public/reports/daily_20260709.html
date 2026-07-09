@@ -1,0 +1,1798 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FinTwit 每日简报 - 2026-07-09</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --panel-soft: #f0f4f8;
+      --text: #17202a;
+      --muted: #657282;
+      --line: #d9e0e8;
+      --green: #147d4f;
+      --red: #b42318;
+      --amber: #9a6700;
+      --blue: #1f5fbf;
+      --chip: #e8edf4;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 14px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 18px 56px;
+    }
+    header {
+      padding: 18px 0 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 3px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      white-space: nowrap;
+    }
+    .disclaimer {
+      margin-top: 14px;
+      max-width: 860px;
+      color: var(--muted);
+    }
+
+    section {
+      margin-top: 22px;
+    }
+    h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .span-4 { grid-column: span 4; }
+    .span-6 { grid-column: span 6; }
+    .span-12 { grid-column: span 12; }
+    .empty {
+      color: var(--muted);
+      padding: 10px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      color: var(--muted);
+      background: var(--panel-soft);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    tr:last-child td { border-bottom: 0; }
+    .num { text-align: right; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 1px 7px;
+      border-radius: 999px;
+      background: var(--chip);
+      color: #2f3b49;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .tag.long { color: var(--green); background: #e6f4ec; }
+    .tag.short, .tag.risk { color: var(--red); background: #fbeae8; }
+    .tag.neutral { color: #4d5966; background: #edf1f5; }
+    .tag.topic { color: #174ea6; background: #e8f0fe; }
+    .tag.warn { color: var(--amber); background: #fff3cd; }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .list li {
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+    .small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .summary-list {
+      margin: 8px 0 12px;
+      padding-left: 18px;
+      color: #2f3b49;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+    details + details { margin-top: 10px; }
+    summary {
+      cursor: pointer;
+      padding: 12px 14px;
+      background: var(--panel-soft);
+      font-weight: 700;
+    }
+    .details-body { padding: 12px 14px 14px; }
+    .tweet-table { font-size: 13px; }
+    .tweet-text { min-width: 260px; }
+    footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    @media (max-width: 860px) {
+      .page { padding: 20px 12px 42px; }
+      h1 { font-size: 24px; }
+      .span-4, .span-6 { grid-column: span 12; }
+      table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .tweet-text {
+        min-width: 420px;
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>FinTwit 每日简报</h1>
+      <div class="meta">
+        <span class="pill">2026-07-09</span>
+        <span class="pill">常规层 56 小时</span>
+        <span class="pill">9 位博主</span>
+        <span class="pill">130 条常规窗口推文</span>
+        
+      </div>
+      <div class="disclaimer">本报告仅聚合 X 平台公开博主观点，用于信息整理与线索追踪。
+内容不构成任何投资建议，请务必独立核验并自行判断风险。
+</div>
+    </header>
+
+    <section>
+      <h2>今日热点</h2>
+      
+      <table>
+        <thead><tr><th>主题</th><th class="num">提及次数</th><th>相关博主</th></tr></thead>
+        <tbody>
+          
+          <tr>
+            <td><span class="tag topic">AI_SEMI</span></td>
+            <td class="num">21</td>
+            <td>Beth_Kindig, HKuppy, KobeissiLetter, aleabitoreddit, dylan522p, xiaomustock</td>
+          </tr>
+          
+          <tr>
+            <td><span class="tag topic">MACRO</span></td>
+            <td class="num">20</td>
+            <td>KobeissiLetter, aleabitoreddit, altcap, xiaomustock</td>
+          </tr>
+          
+          <tr>
+            <td><span class="tag topic">ENERGY</span></td>
+            <td class="num">9</td>
+            <td>HKuppy, KobeissiLetter</td>
+          </tr>
+          
+          <tr>
+            <td><span class="tag topic">CRYPTO</span></td>
+            <td class="num">6</td>
+            <td>KobeissiLetter, aleabitoreddit, xiaomustock</td>
+          </tr>
+          
+          <tr>
+            <td><span class="tag topic">PHOTONICS</span></td>
+            <td class="num">4</td>
+            <td>aleabitoreddit</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+    </section>
+
+    <section>
+      <h2>多博主共识</h2>
+      <div class="grid">
+        <div class="card span-4">
+          <h3>做多共识</h3>
+          <div class="empty">今日暂无做多共识。</div>
+        </div>
+        <div class="card span-4">
+          <h3>做空共识</h3>
+          <div class="empty">今日暂无做空共识。</div>
+        </div>
+        <div class="card span-4">
+          <h3>分歧标的</h3>
+          <div class="empty">暂无明显分歧。</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>仓位/观点变化</h2>
+      <div class="grid">
+        
+        <div class="card span-6">
+          <h3>@Beth_Kindig</h3>
+          
+          
+          <div class="empty">暂无新的仓位信号。</div>
+        </div>
+        
+        <div class="card span-6">
+          <h3>@aleabitoreddit</h3>
+          
+          
+          <div class="empty">暂无新的仓位信号。</div>
+        </div>
+        
+        <div class="card span-6">
+          <h3>@HKuppy</h3>
+          
+          
+          <div class="empty">暂无新的仓位信号。</div>
+        </div>
+        
+        <div class="card span-6">
+          <h3>@altcap</h3>
+          
+          
+          <div class="empty">暂无新的仓位信号。</div>
+        </div>
+        
+        <div class="card span-6">
+          <h3>@xiaomustock</h3>
+          
+          
+          <div class="empty">暂无新的仓位信号。</div>
+        </div>
+        
+      </div>
+    </section>
+
+    <section>
+      <h2>风险雷达</h2>
+      <div class="empty">今日暂无 ticker 绑定风险提醒。</div>
+      
+      <h3>泛风险讨论</h3>
+      <ul class="list">
+        
+        <li><a href="https://x.com/aleabitoreddit/status/2074951619372790018">@aleabitoreddit</a>：你不担心SPAC的常见走势吗？通常合并前上涨，合并当天就会遭到抛售。</li>
+        
+        <li><a href="https://x.com/aleabitoreddit/status/2074550520975679762">@aleabitoreddit</a>：Yes? If it weren't, it wouldn't be a national security threat.
+
+Cybersecurity Committee Dpt of. Homeland Security: 
+
+"China's speed of advancement in humanoid robots is alarming, and the US government should formulate coordinated policies and strategies to cou</li>
+        
+        <li><a href="https://x.com/aleabitoreddit/status/2074381029146837207">@aleabitoreddit</a>：特朗普称：“那些做空的人要倒大霉会被打爆，我不喜欢做空者，因为他们在赌国家不好。”</li>
+        
+        <li><a href="https://x.com/aleabitoreddit/status/2074223485921243237">@aleabitoreddit</a>：分析人形机器人企业上市并非缺融资，提及板块估值锚定风险，估值难度大，鼓励企业早上市。</li>
+        
+        <li><a href="https://x.com/HKuppy/status/2074589809931133285">@HKuppy</a>：分享朋友经历：合作方诈骗拒不还款，联系对方妻子后8小时就追回了欠款</li>
+        
+      </ul>
+      
+    </section>
+
+    <section>
+      <h2>回测快照</h2>
+      <table>
+        <thead><tr><th>博主</th><th class="num">样本数</th><th class="num">30 日胜率</th></tr></thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>按博主汇总与详情</h2>
+      
+      
+      <details>
+        <summary>@dylan522p（L1_industry · 4 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>SemiAnalysis预测2024-2029年AI资本支出及相关债务规模庞大</li><li>预计2029年AI债务融资未偿规模将超7万亿美元</li><li>称自己此前提前预测到GPU债务基金的出现</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2074476005436105165">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">211561</td>
+                <td class="tweet-text">SemiAnalysis预计2024至2029年AI累计资本支出（含IT、数据中心）约11.1万亿美元，2028年年支出超2万亿，2029年AI相关未偿债务约7万亿美元，仅次于美国房贷市场。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2074253849095999616">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">123732</td>
+                <td class="tweet-text">需创新机制让非巨头的初创等企业拿到GPU，2029年AI债务融资未偿额将超7万亿美元</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2074264114893922690">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">11974</td>
+                <td class="tweet-text">我在《State of AI》中预测了GPU债务基金，稍微走在了趋势前面:)</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/dylan522p/status/2074241464021000228">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">2377</td>
+                <td class="tweet-text">转发@SemiAnalysis_：谁能想到@FireworksAI_HQ的快速推理能力这么强呢</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@Beth_Kindig（L1_industry · 5 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>美光称暂无法判断内存供应何时能追上增长的需求</li><li>AI数据中心创企Crusoe拟融资30亿，估值达去年三倍</li><li>韩联社称三星HBM4营收破10亿，预计6月底超12亿美元</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2074232360715825510">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">90842</td>
+                <td class="tweet-text">美光谈内存供应：虽预计2028年行业供应逐步改善，但目前尚不清楚何时能追上不断增长的需求，涉及个股$MU、$AMD等</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2074605990658376093">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">61292</td>
+                <td class="tweet-text">AI数据中心初创公司Crusoe正洽谈融资30亿美元，估值约300亿美元，为去年估值三倍，涉$NVDA等股票</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2074247516376498571">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">36281</td>
+                <td class="tweet-text">据韩联社报道，三星HBM4今年2月量产后仅四个月营收超10亿美元，预计6月底超12亿，涉及个股$MU、$NVDA、$AMD</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2074621228883890495">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">31436</td>
+                <td class="tweet-text">博通周一宣布将与苹果合作延至2031年，开发供应定制芯片，覆盖多代苹果未来硬件产品，涉$AVGO等股票</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/Beth_Kindig/status/2074949191806177711">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">18130</td>
+                <td class="tweet-text">TeraWulf近期与Anthropic签20年400MW数据中心租约，2027年下半年首次供电，预计带来约190亿美元收入，涉$WULF等股票</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@aleabitoreddit（L2_single_stock · 35 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>Just putting it out there:
+
+If everything crashes together from $NBIS, $MRVL, $INTC, $SNDK, $AMD, $SIVE, $MU, $LITE, and</li><li>认为光模块抛售不合理，机构后续将做多</li><li>This is the average visual TA bro, takes a 50% 50% coinflip: 
+
+If it goes the other way, they say "ABC Pattern Invalidat</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074494514061017508">2026-07-07</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>$SIVE</td>
+                <td class="num">1156849</td>
+                <td class="tweet-text">Just putting it out there:
+
+If everything crashes together from $NBIS, $MRVL, $INTC, $SNDK, $AMD, $SIVE, $MU, $LITE, and others... 
+
+Which are all down -4% to -10%+ today so far. 
+
+Probably doesn't have anything to do with individual fundamentals. 
+
+Indiscriminate selloffs from things like cascading margin liquidations</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074405723816304743">2026-07-07</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>-</td>
+                <td class="num">613026</td>
+                <td class="tweet-text">本次主题抛售很荒谬，两份CPO延迟报告均被英伟达驳斥，机构等散户投降后将做多相关标的。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074533565505876218">2026-07-07</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>$SIVE</td>
+                <td class="num">577872</td>
+                <td class="tweet-text">This is the average visual TA bro, takes a 50% 50% coinflip: 
+
+If it goes the other way, they say "ABC Pattern Invalidated", should have known... 
+
+If they get the coinflip right, they promote their $40/month chart. 
+
+-> People drawing swiggly lines over KOSPI mean nothing where it heads. When it's primarily Samsung/SK</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074416685843612031">2026-07-07</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">555198</td>
+                <td class="tweet-text">三星市值1.24万亿美元，内存涨价20%，利润同比增1803%超英伟达苹果，却遭市场抛售7%。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074381029146837207">2026-07-07</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">518695</td>
+                <td class="tweet-text">特朗普称：“那些做空的人要倒大霉会被打爆，我不喜欢做空者，因为他们在赌国家不好。”</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074568161299771394">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">422179</td>
+                <td class="tweet-text">彭博和Meta在算力言论砸盘后做公关，称仍将加大算力投入，已签多份合作，但当前已有大量保证金清算发生。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074951295027568736">2026-07-08</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>$SIVE</td>
+                <td class="num">390165</td>
+                <td class="tweet-text">散户觉得30-60%的下跌是接飞刀，我却认为这是低价布局SIVE等优质赛道龙头的好时机，不会恐慌抛售。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074214669808717906">2026-07-06</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">370433</td>
+                <td class="tweet-text">观察到估值锚定心理，散户高价买Figure，商业化更广的Agility估值仅43亿美元，凸显市场低效</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074581698604593367">2026-07-07</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>$SIVE</td>
+                <td class="num">350527</td>
+                <td class="tweet-text">中国激光雷达厂商禾赛因与$NVDA合作面临美审查，若其被监管出局，利好西方激光雷达厂商及上游$SIVE等。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074240512593481955">2026-07-06</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">PHOTONICS</span></td>
+                <td>-</td>
+                <td class="num">343659</td>
+                <td class="tweet-text">$RDDT惨淡数月后重回200美元，基本面优异，此前下跌因资金流向美光、LITE等瓶颈标的，现相关个股回升</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074838397341065516">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">334765</td>
+                <td class="tweet-text">据纽约时报报道，蓝色起源拟融资100亿美元，估值1300亿，利好RKLB等太空标的估值锚定。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074548850996707412">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">330156</td>
+                <td class="tweet-text">How is the US so far behind?
+
+Xinhua: China's output of humanoids are expected to hit 100,000+ this year. 
+
+Even Morgan Stanley originally projected 14,000 for 2026... 
+
+Really need Elon's $TSLA, $CCXI (Agility), Apptronik, and Figure to catchup. And for more US Gov. subsidies to pour into upstream supply chains + rare</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074799339680202869">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">316650</td>
+                <td class="tweet-text">特朗普称：“西班牙是北约糟糕伙伴，不参与不缴费，切断所有对西贸易”。说实话我搞不懂现在的情况了…</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074466925263061100">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">301705</td>
+                <td class="tweet-text">雷蒙詹姆斯覆盖$SPCX给强买入评级，目标价800美元，估值SpaceX10万亿，吐槽机构给散户的报告很可笑。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074776109074583565">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">291591</td>
+                <td class="tweet-text">特朗普在北约峰会称与伊朗的谅解备忘录“已作废”，“和他们打交道是浪费时间”，市场总是很刺激。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074979055410266452">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">172111</td>
+                <td class="tweet-text">哇，马斯克旗下xAI的Grok4.5达到Anthropic Opus级大模型水平，成本更低，说不定能赶超Anthropic和Mythos。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074965761345642660">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">162121</td>
+                <td class="tweet-text">Meta将在加拿大新建100亿美元数据中心扩大AI产能，此前媒体称其过度建设削减资本支出的说法不攻自破。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074494681711325619">2026-07-07</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">90647</td>
+                <td class="tweet-text">@aleabitoreddit 说实话，我感觉AI相关的交易行情已经走完了。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074500384270455129">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">46005</td>
+                <td class="tweet-text">@aleabitoreddit 你对Sivers一个月内下跌50%有什么看法？</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074500516474687496">2026-07-07</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">34765</td>
+                <td class="tweet-text">@aleabitoreddit @aleabitoreddit Do you think the market will recover from this selloff?</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074779824384881128">2026-07-08</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">28354</td>
+                <td class="tweet-text">@aleabitoreddit 7月还会有更多苦头吃。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074536982311743623">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>-</td>
+                <td class="num">27538</td>
+                <td class="tweet-text">@EUlmsten wow the mythical golden egg dragon candle was spotted over the $SIVEF chart. 
+
+Something big is coming... https://t.co/V4CL41m5ax</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074223485921243237">2026-07-06</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">27246</td>
+                <td class="tweet-text">分析人形机器人企业上市并非缺融资，提及板块估值锚定风险，估值难度大，鼓励企业早上市。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074215530727145482">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">24513</td>
+                <td class="tweet-text">Agility没法以390亿美元估值做小额私募，否则早就做了，走SPAC或因面临估值下调或私募募资不足</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074550520975679762">2026-07-07</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">22908</td>
+                <td class="tweet-text">Yes? If it weren't, it wouldn't be a national security threat.
+
+Cybersecurity Committee Dpt of. Homeland Security: 
+
+"China's speed of advancement in humanoid robots is alarming, and the US government should formulate coordinated policies and strategies to counter Chinese firms' dominance". 
+
+Singling out Unitree Robot</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074552062382338069">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">20058</td>
+                <td class="tweet-text">Literally just Elon. 
+
+- The guy + $SPCX is basically the only reason why US is in the lead with Space.
+- $TSLA led EV commercialization in US
+
+He's sometimes off with timeframes, but right directionally, so pretty sure he can make US robotics #1 again. 
+
+I personally own $CCXI though since I think Agility currently ha</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074799914476028243">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">16355</td>
+                <td class="tweet-text">@aleabitoreddit 西班牙就是个垃圾，对世界其他地区来说根本无足轻重。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074838724576210965">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">16112</td>
+                <td class="tweet-text">@aleabitoreddit 你对Sive未来两年落地业务机会有多大信心？如何判断执行节奏是否合适？</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074240723470401782">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">12789</td>
+                <td class="tweet-text">感谢你几个月前就把这个标的重新放回了我的关注列表里</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074956419938361774">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">11978</td>
+                <td class="tweet-text">得了吧，我们都知道你已经把sivers的仓位卖掉了。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074534705345737065">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">10356</td>
+                <td class="tweet-text">@aleabitoreddit It‘s stupid.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074840359000027286">2026-07-08</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">8556</td>
+                <td class="tweet-text">@aleabitoreddit 哥们，加入SpaceMob吧，$ASTS是全市场最划算的投资标的🚀🚀🚀</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074951619372790018">2026-07-08</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">8046</td>
+                <td class="tweet-text">你不担心SPAC的常见走势吗？通常合并前上涨，合并当天就会遭到抛售。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074957473513935092">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">7537</td>
+                <td class="tweet-text">没错，25年12月到次年4月我持有的SK海力士跌了40%，之后反而涨了20倍。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/aleabitoreddit/status/2074954034629296538">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">2775</td>
+                <td class="tweet-text">对啊，就像他说的，你为什么不等到合并完成呢？</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@HKuppy（L2_single_stock · 12 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>称没有OSHA监管也能做成不少了不起的事</li><li>分享联系诈骗者家属，成功追回被骗资金的经验</li><li>看好职业院校赛道，学员增长将带动相关企业盈利</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2074964700006113565">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">731264</td>
+                <td class="tweet-text">没有美国职业安全与健康管理局（OSHA）的监管，你也能做成不可思议的事</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2074589809931133285">2026-07-07</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">233996</td>
+                <td class="tweet-text">分享朋友经历：合作方诈骗拒不还款，联系对方妻子后8小时就追回了欠款</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2074321884783530457">2026-07-07</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">41944</td>
+                <td class="tweet-text">这就是$LINC和$UTI的投资逻辑，职业培训需求旺盛，职业院校赛道发展空间很大</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2074606202810495311">2026-07-07</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">25252</td>
+                <td class="tweet-text">这可能又是一个做空原油的绝佳机会…🤭</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2074913133991256303">2026-07-08</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">22604</td>
+                <td class="tweet-text">我最近和好友@maxwiethe聊了AI、数据中心及我的两笔AI多头交易，欢迎收听👇👇</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2074576457205006714">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">20038</td>
+                <td class="tweet-text">特朗普告诉伊朗可以袭击4艘油轮，但伊朗贪心袭击了第5艘🤭</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2074671961955807397">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">18973</td>
+                <td class="tweet-text">MCGA!!</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2074964579969310964">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">13628</td>
+                <td class="tweet-text">特朗普会不会因为准头太差，再得一个FIFA和平奖啊？🤭</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2075027780190818331">2026-07-09</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">11260</td>
+                <td class="tweet-text">我跟老婆说，要是今晚能吃完三块肋眼，说不定我也能踢职业足球…🤭</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2075019723952009637">2026-07-09</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">2383</td>
+                <td class="tweet-text">列出知名AI怀疑者与看多者名单，称应关注企业实际行动，忽略极端唱空或狂热看多言论</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2074606666629124497">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">2099</td>
+                <td class="tweet-text">转发@eliant_capital：《经济学人》又干出这种事了</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/HKuppy/status/2074574116636529074">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">1103</td>
+                <td class="tweet-text">回复@contang_o：特朗普允许伊朗袭击4艘油轮，伊朗贪心袭击了第5艘…🤭</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@altcap（L3_institutional · 23 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>介绍特朗普政府推出的新生儿1000美元特朗普账户政策</li><li>表达对某类常态化欺诈行为的强烈不满</li><li>提议民众在社会福利与存款激励之间二选一。</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074261228214477124">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">745541</td>
+                <td class="tweet-text">特朗普政府称将为2025-2028年出生的美国儿童发放1000美元的特朗普账户，助力家庭为子女规划未来，感谢特朗普及财长贝森特。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074686283608383903">2026-07-08</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">289182</td>
+                <td class="tweet-text">这是那种我特别反感的、已经被常态化的欺诈行为之一。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074378920137302380">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">63458</td>
+                <td class="tweet-text">或许我们该给人们选择：1.领100美元的社会服务；2.放弃服务，存25美元到@InvestAmerica24账户，类似亚马逊配送激励。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074643639423185205">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">58806</td>
+                <td class="tweet-text">白宫迎来历史性一天，椭圆形办公室首次敲开市钟，为美国儿童启动特朗普账户，我很荣幸代表美光参与，将为百万儿童提供该账户。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074259253716549774">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">53436</td>
+                <td class="tweet-text">特朗普账户正式上线，2025-2028年出生的美国儿童可获1000美元自动投美股指数，满18岁可转为个人退休账户享受复利增长。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074278103522627711">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">53153</td>
+                <td class="tweet-text">很荣幸参与这个历史性项目，出席白宫启动仪式。我们$GLXY将为每位员工子女等额匹配政府发放的1000美元，初始合计2000美元。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074963025270808903">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">45604</td>
+                <td class="tweet-text">感谢州长，美国的家长们都同意！特朗普账户成为美国第一应用是有原因的，它对美国家庭和儿童是好政策，每个孩子都是美国梦的直接股东。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074497702143099157">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">45513</td>
+                <td class="tweet-text">@altcap你可真有本事，居然做到了。这是给美国资本主义最棒的礼物，很荣幸@boomsupersonic是首批配捐的企业之一。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074418263358935473">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">44695</td>
+                <td class="tweet-text">美国例外论</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074553201807032744">2026-07-07</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">42933</td>
+                <td class="tweet-text">三个月前@altcap在播客称Anthropic因安全接入其数据湖，现有人担忧其将专有研究数据交给Anthropic，呼吁相关人士对话拆解争议。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074207314148811029">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">39748</td>
+                <td class="tweet-text">给孩子最好的礼物之一是坚实的未来基础，感谢总统推出帮家庭为孩子投资追梦的政策，符合条件家庭可去官网了解注册。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074564374153371795">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">38822</td>
+                <td class="tweet-text">🇺🇸🇺🇸</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074555636629819846">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">30399</td>
+                <td class="tweet-text">@altcap你应当深感骄傲，这对美国和我们所有孩子来说都是一场巨大的胜利。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074273243406684441">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">17895</td>
+                <td class="tweet-text">@altcap、迈克尔·戴尔、格温·肖特韦尔等人为美国年轻一代推出的举措，将被视为极具变革性的利民项目，实在太棒了。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074802778074124434">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">16712</td>
+                <td class="tweet-text">是。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074459762939302001">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">13223</td>
+                <td class="tweet-text">这将改变我们国家的未来。感谢@altcap、@MichaelDell、@realDonaldTrump，请问我该如何提供帮助。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074551835856130320">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">13073</td>
+                <td class="tweet-text">特朗普账户对佐治亚和美国下一代是巨大胜利，佐治亚寄养儿童自动获1000美元开户额，我若当选州长将推动州政府再补1000美元。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074218203962806450">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">6847</td>
+                <td class="tweet-text">@RobinhoodApp团队和Joe Gebbia的设计部门做得很棒，界面可无缝向亲友账户捐款，政府项目都该效仿！</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074563535045108044">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">6047</td>
+                <td class="tweet-text">是时候培养所有者而非受扶养者了！每个美国儿童都可开特朗普账户，2025-2028年出生的孩子将获1000美元投资启动未来，美国梦回归了。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074337578174857443">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">4912</td>
+                <td class="tweet-text">她非常厉害，冲在前面领头。谁会愿意跟随？</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074595454692553154">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">3425</td>
+                <td class="tweet-text">“这不是一个项目，是一个平台（特朗普账户），是美国历史上最大规模的直接慈善解锁。”——altcap</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074226310570774938">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">2862</td>
+                <td class="tweet-text">@altcap的Brad Gerstner值得我们深切感谢，我认为他该获总统自由勋章。《投资美国法案》将是美国史上最好的立法之一，祝贺所有相关人士。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/altcap/status/2074220151202021679">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">2544</td>
+                <td class="tweet-text">我们或许正见证一场大运动的开端，20年后回望这会是“所有权”的重大拐点，感谢@MichaelDell和@altcap。</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@xiaomustock（L2_single_stock · 13 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>博主认为存储芯片股已跌到位，抛压释放后迎新行情</li><li>质疑Gate平台盗币事件疑似内部人员作案</li><li>提醒Gate平台用户注意资金安全，有人被盗大额资金</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2074380020429226196">2026-07-07</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">232895</td>
+                <td class="tweet-text">今天应该跌到位了：美光918美元，海力士约1400美元，跟风盘离场就是新开始，美股韩股涨幅要匹配财报。https://t.co/m5fApc3Tb7</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2074796670551031899">2026-07-08</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>-</td>
+                <td class="num">213924</td>
+                <td class="tweet-text">@Gate @jheioff 查下盗币原因，怀疑是内部人作案，不然突破不了多重安全防护。https://t.co/mZMS1ygDHT</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2074791831624442331">2026-07-08</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>-</td>
+                <td class="num">198542</td>
+                <td class="tweet-text">有朋友刚在@Gate 被盗170万美金，账户全被提空，消息百分百真实，注意资金安全。https://t.co/zhC5zvfHWi</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2074503788296368216">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">188400</td>
+                <td class="tweet-text">心脏疼，感觉像得了恶疾 https://t.co/B3BsfjWb7h</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2074380412240228648">2026-07-07</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">145327</td>
+                <td class="tweet-text">韩国股市涨熔断时坚决不买，跌停熔断、韩国人恐慌时抓紧买入</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2074760420427260054">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">136905</td>
+                <td class="tweet-text">韩国为抢资金发行十多只2倍做多ETF，全部破发，加杠杆买入的韩国股民集体大亏。https://t.co/AyXqWehoOD</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2074500941899030867">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">127338</td>
+                <td class="tweet-text">抄底被活埋，跌服了跌懵了，今天亏得一塌糊涂</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2074853711529275399">2026-07-08</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">96854</td>
+                <td class="tweet-text">看来海公公明天要上涨了。https://t.co/0UjW0U6bcw</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2074853384906264662">2026-07-08</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">95679</td>
+                <td class="tweet-text">终于反弹了，韩股不可能天天熔断，AI不会停滞，机器人和agent还不成熟。https://t.co/SQoU5ekfV3</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2074402565207503360">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">83475</td>
+                <td class="tweet-text">牛市里人人都是股神，拿着不动比股神还顺，跌了才知自身水平。https://t.co/5XPKOMiFey</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2074751139313229851">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">80478</td>
+                <td class="tweet-text">韩国股市暴涨暴跌，韩国人肯定睡不好，我拿着海力士正股都快被搞疯了。https://t.co/gw8CbWpHsd</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2074664866556899346">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">69638</td>
+                <td class="tweet-text">我们尽调时发现李博杰融资造假便放弃投资，如今他TG账号已注销，疑似躲杜老板。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/xiaomustock/status/2074755083942891862">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">64598</td>
+                <td class="tweet-text">涨的时候一个个叫大力士，跌的时候就张口闭口叫海公公。https://t.co/gmndMFJdyb</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@KobeissiLetter（L5_market_tape · 38 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>特朗普宣布美伊停火结束，称不愿再与伊朗打交道</li><li>美官员称伊朗袭击霍尔木兹海峡两艘商船</li><li>伊朗总统批评美作为世界杯东道主的霸凌外交政策</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074800255774716126">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">1711301</td>
+                <td class="tweet-text">突发：特朗普称美伊停火已结束，直言不想再和伊朗打交道，称其是人渣</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074299935655129524">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">1002559</td>
+                <td class="tweet-text">突发：美国官员称伊朗袭击了霍尔木兹海峡的两艘商船。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074850081941987532">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">927530</td>
+                <td class="tweet-text">突发：伊朗总统佩泽什基安批评美作为世界杯东道主的霸凌外交政策，称拒绝此类游戏。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074607637480567170">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">872001</td>
+                <td class="tweet-text">突发：美国军方宣布已开始对伊朗发动一系列强力打击，称此举是回应伊朗袭击霍尔木兹海峡航行的三艘船只</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074804294528737507">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">603488</td>
+                <td class="tweet-text">突发：特朗普称美国正切断与西班牙的所有贸易，直言不想和西班牙有任何瓜葛</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074926562512617583">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">495639</td>
+                <td class="tweet-text">BREAKING: Nasdaq 100 futures erase all losses and turn green on the day after President Trump says the Iran ceasefire is “over.” https://t.co/YFNFSoNc9X</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074235137957458335">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">493404</td>
+                <td class="tweet-text">突发：特朗普称沃尔玛应其要求将大幅降价庆祝美国250周年，其中碎牛肉降价近15%。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074567482237477053">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">490441</td>
+                <td class="tweet-text">突发：美国将取消伊朗最新发放的石油出口通用许可，回应伊朗袭击霍尔木兹海峡三艘商船，称其行为不可接受将面临后果</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074807204453269999">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">480820</td>
+                <td class="tweet-text">突发：特朗普称美伊停火结束后美股期指大跌，标普500跌1%，纳指跌1.5%，道指跌1.3%，WTI原油涨5%，布油涨6%，黄金跌2.5%，相关谅解备忘录终止</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074854586012070291">2026-07-08</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">453140</td>
+                <td class="tweet-text">突发：特朗普宣布美考虑重新封锁霍尔木兹海峡，称可能不得不打击伊朗海水淡化厂。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074574397977891280">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">444105</td>
+                <td class="tweet-text">突发：美国为回应伊朗袭击霍尔木兹海峡三艘商船，取消伊朗石油出口通用许可后，布伦特原油价格涨破76美元/桶</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074873748507730402">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">397975</td>
+                <td class="tweet-text">官方消息：形势突变，布伦特原油价格已回升至80美元/桶上方。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074513197080474000">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">381746</td>
+                <td class="tweet-text">突发：据Axios报道，美国官员称伊朗已在霍尔木兹海峡袭击第三艘商船，此前美伊为期一周的停袭协议已到期</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074869448201118074">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">376454</td>
+                <td class="tweet-text">突发：据塔斯社消息，伊朗已中止与美国的最终和解谈判。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074466777287778698">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">359832</td>
+                <td class="tweet-text">突发：SpaceX（股票代码$SPCX）今日被纳入纳斯达克100，系该指数历史上最快获纳入的标的</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074264867465265618">2026-07-06</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">350963</td>
+                <td class="tweet-text">美国私人信贷市场压力加剧：2026年二季度赎回请求创156亿美元纪录，仅38%被满足，危机暂无缓解迹象。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074251705651237330">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">305790</td>
+                <td class="tweet-text">外国对美债需求跟不上美债扩张：外国官方持有美债占比降至12.5%，为本世纪最低，中国持仓较峰值砍半。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074866151717269632">2026-07-08</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">303053</td>
+                <td class="tweet-text">突发：伊朗称将以至少2:1比例回击美袭击，特朗普称美今夜可能再打击伊朗。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074589031426396406">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">293496</td>
+                <td class="tweet-text">中国主导全球汽车市场：5月汽车出口同比增68.7%至93万辆，过去12个月累计出口860万辆，是日本的两倍，为全球领军者</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074494840650277178">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">282334</td>
+                <td class="tweet-text">突发：受芯片股回落影响，纳斯达克100指数日内跌幅扩大至1%以上</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074898807977124058">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">CRYPTO</span></td>
+                <td>-</td>
+                <td class="num">279053</td>
+                <td class="tweet-text">突发：6月代币化股票交易量创34亿美元纪录，环比增279%、同比增1400%，Solana链占比超90%。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074951602364977609">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">259827</td>
+                <td class="tweet-text">BREAKING: US CENTCOM announces that the US has begun conducting additional strikes in Iran.
+
+These strikes are intended to "further degrade Iran's ability to threaten freedom of navigation in the Strait of Hormuz," CENTCOM says.</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074215118741610566">2026-07-06</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">242378</td>
+                <td class="tweet-text">突发：2026年美联储降息概率仅剩21%，数月前市场预期今年最多降息4次，“更高更久”逻辑回归。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074801049840366057">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">228599</td>
+                <td class="tweet-text">突发：特朗普称美伊停火已结束，布伦特原油价格随后飙升至接近79美元/桶</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074287033762140532">2026-07-07</a></td>
+                <td><span class="tag short">SHORT</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">220205</td>
+                <td class="tweet-text">美国小盘企正面临沉重利息负担：罗素2000成分股利息支出占EBITDA达31%，创6年新高，近四成未盈利，急需降息。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074511445346189549">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">217514</td>
+                <td class="tweet-text">市场涨势正在扩散：等权标普500今年已创31次历史新高，涨幅12.2%跑赢标普500，全年有望创60次新高，领涨范围扩大</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074489688123977963">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">210697</td>
+                <td class="tweet-text">OMFIF调查显示，4%金融机构未来1-2年将削减美元敞口，央行正多元化配置，从美元转向黄金</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074672670256332851">2026-07-08</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">206043</td>
+                <td class="tweet-text">突发：美国公共债务利息占GDP升至约3.2%，为70年代来最高，近5年几近翻三倍，已连续三年超国防开支，债务负担处未知领域</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074913911694889340">2026-07-08</a></td>
+                <td><span class="tag long">LONG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">197940</td>
+                <td class="tweet-text">黄金正进入全年历史利好时段，过去20年7月平均涨1.5%，季节性对黄金多头有利。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074637079196127714">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">183018</td>
+                <td class="tweet-text">新兴市场投资需求创历史：MSCI新兴市场ETF(IEMG)规模达1600亿美元创纪录，富时新兴市场ETF(VWO)达1200亿美元，韩国AI热潮正重塑新兴市场投资</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074999422249787885">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">176293</td>
+                <td class="tweet-text">Agentic AI continues to see rapid growth.
+
+Over the last 12 months, the focus has rapidly shifted toward the software layer that allows AI to connect with enterprise data and applications.
+
+Instead of simply answering questions, these systems can access company databases, analyze documents, execute multi-step tasks, an</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074537014267916568">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">AI_SEMI</span></td>
+                <td>-</td>
+                <td class="num">168133</td>
+                <td class="tweet-text">AI是全球财报电话会议最热门话题：2026年上半年AI提及量达780次创纪录，超此前三年总和，正改变企业战略与金融市场</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074973611308327310">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">162380</td>
+                <td class="tweet-text">BREAKING: President Trump says “it will get much worse” if Iran attacks ships in the Strait of Hormuz again. https://t.co/kn8xRu6mA7</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074885383796482435">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">ENERGY</span></td>
+                <td>-</td>
+                <td class="num">158673</td>
+                <td class="tweet-text">突发：特朗普称美伊停火已结束，本月美油价预计升至80美元/桶上方，此前该概率仅13%。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2074950139534573857">2026-07-08</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">131071</td>
+                <td class="tweet-text">American consumers are becoming increasingly bullish on equities:
+
+The perceived probability among US consumers that US stock prices will be higher 1-year from now increased +2.9 percentage points in June, to 40.9%, the highest since April 2021.
+
+This is also the 3rd-highest reading since the 2020 pandemic recovery.
+
+B</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2075007670759874675">2026-07-09</a></td>
+                <td><span class="tag risk">RISK_FLAG</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">108974</td>
+                <td class="tweet-text">Tech stocks are experiencing one of their most volatile periods in history:
+
+The ratio of the Nasdaq 100 volatility index, $VXN, to the S&P 500 volatility index, $VIX, is up to 1.7 points, the highest in 23 years.
+
+This marks the first time since 2018 that the ratio has surpassed 1.5 points.
+
+By comparison, during the </td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2075027043809394905">2026-07-09</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">MACRO</span></td>
+                <td>-</td>
+                <td class="num">93176</td>
+                <td class="tweet-text">BREAKING: The  Index of US Financial Conditions is up to ~1.2 points, the easiest since February 2026.
+
+This is also near the highest level in at least 11 years.
+
+Since 2015, similar readings have only been recorded in early 2025 and during 2021, before the Fed started hiking rates.
+
+The Financial Conditions Index has </td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/KobeissiLetter/status/2075041286952738822">2026-07-09</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">56839</td>
+                <td class="tweet-text">BREAKING: President Trump says Iran called him and “they want to make a deal so badly.”
+
+US stock market futures turn green on the news. https://t.co/1MkYnxxkCK</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details>
+        <summary>@muddywatersre（L6_risk · 2 条）</summary>
+        <div class="details-body">
+          
+          <ul class="summary-list">
+            <li>推文谈及美国建国250周年，论及其言论保护与第一修正案</li><li>推文提及新一季《四分卫》将于7月14日上线</li>
+          </ul>
+          
+          <table class="tweet-table">
+            <thead><tr><th>时间</th><th>观点</th><th>主题</th><th>标的</th><th class="num">浏览</th><th>中文翻译/摘要</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2073436159271952442">2026-07-04</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">22697</td>
+                <td class="tweet-text">在美国建国250周年之际，值得反思的是，没有其他国家如美国般大力保护批评政府的权利，请看第一修正案文本。</td>
+              </tr>
+              
+              <tr>
+                <td><a href="https://x.com/muddywatersre/status/2074311927900369153">2026-07-07</a></td>
+                <td><span class="tag neutral">NEUTRAL</span></td>
+                <td><span class="tag topic">OTHER</span></td>
+                <td>-</td>
+                <td class="num">19625</td>
+                <td class="tweet-text">哎，算了。至少新一季《四分卫》将于7月14日上线。</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      
+    </section>
+
+    <section>
+      <h2>今日高互动推文</h2>
+      <ul class="list">
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2074800255774716126">@KobeissiLetter</a></strong> <span class="small">1711301 次浏览 · 观点强度 4</span><br>突发：特朗普称美伊停火已结束，直言不想再和伊朗打交道，称其是人渣</li>
+        
+        <li><strong><a href="https://x.com/aleabitoreddit/status/2074494514061017508">@aleabitoreddit</a></strong> <span class="small">1156849 次浏览 · 观点强度 4</span><br>Just putting it out there:
+
+If everything crashes together from $NBIS, $MRVL, $INTC, $SNDK, $AMD, $SIVE, $MU, $LITE, and others... 
+
+Which are all down -4% to -10%+ today so far. 
+
+Probably doesn't have anything to do with individual fundamentals. 
+
+Indiscriminate selloffs from t</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2074299935655129524">@KobeissiLetter</a></strong> <span class="small">1002559 次浏览 · 观点强度 3</span><br>突发：美国官员称伊朗袭击了霍尔木兹海峡的两艘商船。</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2074850081941987532">@KobeissiLetter</a></strong> <span class="small">927530 次浏览 · 观点强度 3</span><br>突发：伊朗总统佩泽什基安批评美作为世界杯东道主的霸凌外交政策，称拒绝此类游戏。</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2074607637480567170">@KobeissiLetter</a></strong> <span class="small">872001 次浏览 · 观点强度 3</span><br>突发：美国军方宣布已开始对伊朗发动一系列强力打击，称此举是回应伊朗袭击霍尔木兹海峡航行的三艘船只</li>
+        
+        <li><strong><a href="https://x.com/altcap/status/2074261228214477124">@altcap</a></strong> <span class="small">745541 次浏览 · 观点强度 1</span><br>特朗普政府称将为2025-2028年出生的美国儿童发放1000美元的特朗普账户，助力家庭为子女规划未来，感谢特朗普及财长贝森特。</li>
+        
+        <li><strong><a href="https://x.com/HKuppy/status/2074964700006113565">@HKuppy</a></strong> <span class="small">731264 次浏览 · 观点强度 1</span><br>没有美国职业安全与健康管理局（OSHA）的监管，你也能做成不可思议的事</li>
+        
+        <li><strong><a href="https://x.com/aleabitoreddit/status/2074405723816304743">@aleabitoreddit</a></strong> <span class="small">613026 次浏览 · 观点强度 4</span><br>本次主题抛售很荒谬，两份CPO延迟报告均被英伟达驳斥，机构等散户投降后将做多相关标的。</li>
+        
+        <li><strong><a href="https://x.com/KobeissiLetter/status/2074804294528737507">@KobeissiLetter</a></strong> <span class="small">603488 次浏览 · 观点强度 4</span><br>突发：特朗普称美国正切断与西班牙的所有贸易，直言不想和西班牙有任何瓜葛</li>
+        
+        <li><strong><a href="https://x.com/aleabitoreddit/status/2074533565505876218">@aleabitoreddit</a></strong> <span class="small">577872 次浏览 · 观点强度 4</span><br>This is the average visual TA bro, takes a 50% 50% coinflip: 
+
+If it goes the other way, they say "ABC Pattern Invalidated", should have known... 
+
+If they get the coinflip right, they promote their $40/month chart. 
+
+-> People drawing swiggly lines over KOSPI mean nothing where </li>
+        
+      </ul>
+    </section>
+
+    
+
+    <footer>由 FinTwit Tracker 生成 · 2026-07-09T02:39:42</footer>
+  </main>
+</body>
+</html>
