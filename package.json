@@ -6,7 +6,6 @@
   "main": "src/agent/orchestrator.js",
   "scripts": {
     "start": "node src/agent/orchestrator.js --run-once",
-    "schedule": "node src/agent/orchestrator.js --schedule",
     "report:sync-public": "node scripts/sync-public-reports.js",
     "report:upload-supabase": "node scripts/upload-report-to-supabase.js",
     "report:push": "node scripts/push-report.js",
@@ -24,7 +23,6 @@
     "axios-retry": "^4.5.0",
     "dotenv": "^16.4.5",
     "js-yaml": "^4.1.0",
-    "node-cron": "^3.0.3",
     "nunjucks": "^3.2.4",
     "openai": "^4.67.0",
     "pino": "^9.4.0",

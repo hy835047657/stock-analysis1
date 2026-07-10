@@ -1,6 +1,6 @@
 # FinTwit Signal Radar
 
-> Track influential FinTwit accounts, classify market views with an LLM, translate key tweets into Chinese, detect consensus/risk signals, and publish a daily HTML report through GitHub Actions, Vercel, Supabase, and Lark.
+> Track influential FinTwit accounts, classify market views with an LLM, translate key tweets into Chinese, detect consensus/risk signals, and publish a daily HTML report through GitHub Actions, Vercel, and Supabase.
 
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D20-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![GitHub Actions](https://img.shields.io/badge/Automation-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white)](https://github.com/features/actions)
@@ -8,7 +8,7 @@
 [![Supabase](https://img.shields.io/badge/Storage-Supabase-3FCF8E?logo=supabase&logoColor=white)](https://supabase.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#license)
 
-FinTwit Signal Radar is an open-source Node.js agent for people who follow overseas stock and macro voices on X/Twitter. It fetches recent posts from selected accounts, validates tickers, uses an LLM to classify investment views, translates important content into Chinese, tracks position changes, detects multi-blogger consensus, and sends a daily report to Lark or Slack.
+FinTwit Signal Radar is an open-source Node.js agent for people who follow overseas stock and macro voices on X/Twitter. It fetches recent posts from selected accounts, validates tickers, uses an LLM to classify investment views, translates important content into Chinese, tracks position changes, detects multi-blogger consensus, and publishes a daily HTML report.
 
 This project is designed for self-hosting. You can run it locally, or deploy it as a lightweight cloud workflow with GitHub Actions for scheduling, Vercel for public HTML reports, and Supabase for structured report storage.
 
@@ -36,8 +36,8 @@ This project tries to turn that stream into a repeatable daily workflow:
 - **Consensus detection**: highlights tickers mentioned by multiple bloggers with weighted agreement.
 - **Risk radar**: surfaces activist short reports, accounting concerns, delisting risk, and regulatory warnings.
 - **Chinese daily report**: Markdown and HTML output with blogger-level tweet summaries and detail links.
-- **Lark / Slack push**: webhook-based daily delivery.
-- **Cloud-ready deployment**: GitHub Actions + Vercel + Supabase.
+- **Lark / Slack push**: optional webhook-based manual delivery.
+- **Cloud-ready deployment**: GitHub Actions + Vercel + Supabase, with manual report generation.
 
 ## Example Output
 
@@ -135,8 +135,8 @@ SUPABASE_SERVICE_ROLE_KEY=
 
 ```bash
 npm start                  # run once locally
-npm run schedule           # run local cron process
 npm run ci:daily           # generate report, sync public HTML, upload Supabase if configured
+npm run report:push        # manually push the latest report to Lark/Slack
 npm run build:vercel       # prepare static Vercel output
 npm test                   # run tests
 ```
@@ -149,7 +149,7 @@ This repo is prepared for Vercel + GitHub Actions + Supabase:
 2. Add GitHub repository secrets under `Settings -> Secrets and variables -> Actions`.
 3. Import the repo into Vercel. The included `vercel.json` serves the `public` directory.
 4. Set `REPORT_PUBLIC_BASE_URL` to your Vercel URL. Both `https://your-app.vercel.app` and `https://your-app.vercel.app/reports` are supported.
-5. GitHub Actions runs every day at 09:30 Asia/Shanghai, with backup checks at 09:45 and 10:00. If the daily report already exists, backup runs skip automatically.
+5. Automatic report generation is disabled. Use `workflow_dispatch` in GitHub Actions or `npm run ci:daily` locally when you want to generate a report manually.
 
 Recommended GitHub Secrets:
 

@@ -1,6 +1,12 @@
 # Vercel Cron Fallback
 
-GitHub Actions scheduled workflows are best-effort and may occasionally be delayed or skipped. This project keeps the GitHub schedule, and also provides a Vercel Cron fallback that dispatches the same workflow every day at 09:30 Asia/Shanghai.
+Vercel Cron fallback is disabled. The project no longer configures Vercel to dispatch the GitHub Actions workflow automatically.
+
+Reports can still be generated manually from GitHub Actions with `workflow_dispatch`, or locally with:
+
+```bash
+npm run ci:daily
+```
 
 ## Required Vercel Environment Variables
 
@@ -22,7 +28,7 @@ Optional overrides:
 
 ## Endpoint
 
-Vercel Cron calls:
+The endpoint is retained for manual/internal use, but no Vercel Cron job calls it:
 
 ```text
 /api/trigger-daily

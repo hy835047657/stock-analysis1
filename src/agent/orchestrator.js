@@ -3,7 +3,6 @@
 //                                                   -> backtest (lazy)
 //                                                   -> riskAlert -> reporter
 import 'dotenv/config';
-import cron from 'node-cron';
 import { logger } from '../common/index.js';
 import { fetchAll }      from '../skills/tweetFetcher/index.js';
 import { classifyAll }   from '../skills/viewClassifier/index.js';
@@ -29,25 +28,15 @@ export async function runOnce({ skipBacktest = false, push = true } = {}) {
     await pushLark(md, { htmlPath });
     await pushSlack(md);
   }
-  logger.info(`=== Pipeline complete · report at ${rpath} · html at ${htmlPath} ===`);
-}
-
-function schedule() {
-  const tz = process.env.TIMEZONE || 'Asia/Shanghai';
-  const hour = Number(process.env.DAILY_REPORT_HOUR ?? 10);
-  const minute = Number(process.env.DAILY_REPORT_MINUTE ?? 0);
-  const expr = `${minute} ${hour} * * *`;
-  cron.schedule(expr, () => {
-    runOnce().catch(e => logger.error({ err: e.message }, 'scheduled run failed'));
-  }, { timezone: tz });
-  logger.info(`scheduler started: daily ${String(hour).padStart(2,'0')}:${String(minute).padStart(2,'0')} ${tz}`);
+  logger.info(`=== Pipeline complete - report at ${rpath} - html at ${htmlPath} ===`);
 }
 
 // CLI
 const args = process.argv.slice(2);
 const flags = new Set(args);
 if (flags.has('--schedule')) {
-  schedule();
+  logger.error('scheduled runs are disabled; use npm start or npm run ci:daily for a manual run');
+  process.exit(1);
 } else {
   // default: run-once
   runOnce({ skipBacktest: flags.has('--skip-backtest'), push: !flags.has('--no-push') })

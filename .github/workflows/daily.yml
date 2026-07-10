@@ -1,9 +1,5 @@
 name: daily-fintwit
 on:
-  schedule:
-    - cron: '30 1 * * *'  # 01:30 UTC = 09:30 Asia/Shanghai
-    - cron: '45 1 * * *'  # backup: 09:45 Asia/Shanghai
-    - cron: '0 2 * * *'   # backup: 10:00 Asia/Shanghai
   workflow_dispatch:
 
 jobs:
@@ -45,7 +41,6 @@ jobs:
         env:
           TWEX_API_KEY: ${{ secrets.TWEX_API_KEY || secrets.WEX_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          LARK_WEBHOOK: ${{ secrets.LARK_WEBHOOK }}
           REPORT_PUBLIC_BASE_URL: ${{ vars.REPORT_PUBLIC_BASE_URL }}
         run: |
           missing=0
@@ -55,11 +50,8 @@ jobs:
               missing=1
             fi
           done
-          if [ -z "$LARK_WEBHOOK" ]; then
-            echo "::warning::LARK_WEBHOOK is not configured, so the report will not be pushed to Lark."
-          fi
           if [ -z "$REPORT_PUBLIC_BASE_URL" ]; then
-            echo "::warning::REPORT_PUBLIC_BASE_URL is not configured, so the pushed link may be missing."
+            echo "::warning::REPORT_PUBLIC_BASE_URL is not configured, so the public report link may be missing."
           fi
           exit "$missing"
       - name: Run pipeline
@@ -76,8 +68,6 @@ jobs:
           PIPELINE_WINDOW_HOURS: ${{ vars.PIPELINE_WINDOW_HOURS || '56' }}
           TWEX_REUSE_RAW: ${{ vars.TWEX_REUSE_RAW || 'false' }}
           TWEX_FETCH_CONCURRENCY: ${{ vars.TWEX_FETCH_CONCURRENCY || '3' }}
-          LARK_WEBHOOK: ${{ secrets.LARK_WEBHOOK }}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           REPORT_PUBLIC_BASE_URL: ${{ vars.REPORT_PUBLIC_BASE_URL }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
@@ -103,10 +93,3 @@ jobs:
           PUBLIC_REPORT_WAIT_SECONDS: ${{ vars.PUBLIC_REPORT_WAIT_SECONDS || '90' }}
           PUBLIC_REPORT_WAIT_INTERVAL_SECONDS: ${{ vars.PUBLIC_REPORT_WAIT_INTERVAL_SECONDS || '5' }}
         run: npm run report:wait-public
-      - name: Push notification
-        if: steps.existing_report.outputs.skip != 'true'
-        env:
-          LARK_WEBHOOK: ${{ secrets.LARK_WEBHOOK }}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          REPORT_PUBLIC_BASE_URL: ${{ vars.REPORT_PUBLIC_BASE_URL }}
-        run: npm run report:push
